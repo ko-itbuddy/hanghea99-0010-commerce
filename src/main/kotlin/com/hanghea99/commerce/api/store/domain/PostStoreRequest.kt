@@ -1,4 +1,4 @@
-package com.hanghea99.commerce.api.store.save.pojo
+package com.hanghea99.commerce.api.store.domain
 
 import com.hanghea99.commerce.api.common.domain.HeaderDomain
 import com.hanghea99.commerce.api.common.domain.core.CoreRequest

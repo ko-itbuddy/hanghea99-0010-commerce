@@ -12,6 +12,10 @@ plugins {
 group = "com.hanghea99"
 version = "0.0.1-SNAPSHOT"
 
+object Versions {
+	const val koTestVersion = "5.7.2"
+}
+
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -30,6 +34,9 @@ dependencies {
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 	testImplementation("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.kotest:kotest-runner-junit5:${Versions.koTestVersion}")
+	testImplementation("io.kotest:kotest-assertions-core:${Versions.koTestVersion}")
+	testImplementation("io.kotest:kotest-property:${Versions.koTestVersion}")
 
 
 	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")

@@ -3,3 +3,4 @@ src/.DS_Store
 /out/
 /.idea/
 build
+.DS_Store

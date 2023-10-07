@@ -1,7 +1,7 @@
 package com.hanghea99.commerce.test.api.store
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.hanghea99.commerce.api.common.domain.HeaderVo
+import com.hanghea99.commerce.api.common.domain.HeaderDomain
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.StoreController
 import com.hanghea99.commerce.api.store.StoreService
@@ -45,6 +45,7 @@ class StoreControllerTest {
                 modDt = Instant.now(),
                 regDt = Instant.now(),
             ),
+            header = HeaderDomain()
         )
         val jsonBody = objectMapper.writeValueAsString(request)
 
@@ -56,6 +57,7 @@ class StoreControllerTest {
             MockMvcResultMatchers.status().isOk
         )
     }
+
 
 
     @Test

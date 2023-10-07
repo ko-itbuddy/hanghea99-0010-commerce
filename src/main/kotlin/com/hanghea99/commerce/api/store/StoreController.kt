@@ -7,6 +7,7 @@ import com.hanghea99.commerce.api.store.domain.PostStoreResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
@@ -18,7 +19,7 @@ class StoreController(val storeService: StoreService) {
 
     @PostMapping("")
     @Throws(Exception::class)
-    fun postStore(postStoreRequest: PostStoreRequest): PostStoreResponse {
+    fun postStore(@RequestBody postStoreRequest: PostStoreRequest): PostStoreResponse {
         println("====================")
 
         return PostStoreResponse(
@@ -40,7 +41,7 @@ class StoreController(val storeService: StoreService) {
 
     @GetMapping("")
     @Throws(Exception::class)
-    fun getStore( ): String {
+    fun getStore(): String {
         return "hello"
     }
 

@@ -44,8 +44,7 @@ class StoreControllerTest {
                 informationManagerEmail = "",
                 modDt = Instant.now(),
                 regDt = Instant.now(),
-            ),
-            header = HeaderDomain()
+            )
         )
         val jsonBody = objectMapper.writeValueAsString(request)
 

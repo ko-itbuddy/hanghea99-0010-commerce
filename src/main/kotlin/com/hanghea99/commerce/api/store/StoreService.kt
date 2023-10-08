@@ -16,7 +16,7 @@ class StoreService(
     var storeReader: StoreReader
 ) {
     @Throws(Exception::class)
-    fun postStore(postStoreRequest: PostStoreRequest):PostStoreResponse{
+    fun postStore(postStoreRequest: PostStoreRequest): PostStoreResponse {
         return PostStoreResponse(
             resultCodeMsg = ResultCodeMsg.SUCCESS,
             result = StoreVo(

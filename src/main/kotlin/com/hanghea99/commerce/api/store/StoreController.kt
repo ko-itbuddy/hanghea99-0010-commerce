@@ -2,6 +2,7 @@ package com.hanghea99.commerce.api.store
 
 import com.hanghea99.commerce.api.common.ResultCodeMsg
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
+import com.hanghea99.commerce.api.store.domain.GetStoreRequest
 import com.hanghea99.commerce.api.store.domain.PostStoreRequest
 import com.hanghea99.commerce.api.store.domain.PostStoreResponse
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,7 +42,7 @@ class StoreController(val storeService: StoreService) {
 
     @GetMapping("")
     @Throws(Exception::class)
-    fun getStore(): String {
+    fun getStore(@RequestBody getStoreRequest: GetStoreRequest): String {
         return "hello"
     }
 

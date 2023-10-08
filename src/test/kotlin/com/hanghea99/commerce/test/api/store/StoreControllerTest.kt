@@ -1,7 +1,6 @@
 package com.hanghea99.commerce.test.api.store
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.hanghea99.commerce.api.common.domain.HeaderDomain
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.StoreController
 import com.hanghea99.commerce.api.store.StoreService
@@ -16,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import org.springframework.util.LinkedMultiValueMap
 import java.time.Instant
 
 @WebMvcTest(StoreController::class)
@@ -62,10 +62,17 @@ class StoreControllerTest {
     @Test
     fun `GET apiStore 정상 요청`() {
         // GIVEN
+        val queryParams = LinkedMultiValueMap<String, String>()
 
+        queryParams.add("types", "NAME")
+        queryParams.add("values", "카카오")
+        queryParams.add("page", "1")
+        queryParams.add("count", "10")
+        queryParams.add("sort", "LATEST")
         //WHEN //THEN
         mockMvc.perform(
             get("/api/store")
+                .queryParams(queryParams)
         ).andExpectAll(
             MockMvcResultMatchers.status().isOk
         ).andDo(

@@ -2,16 +2,8 @@ package com.hanghea99.commerce.api.store
 
 import com.hanghea99.commerce.api.common.ResultCodeMsg
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
-import com.hanghea99.commerce.api.store.domain.GetStoreRequest
-import com.hanghea99.commerce.api.store.domain.PostStoreRequest
-import com.hanghea99.commerce.api.store.domain.PostStoreResponse
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RestController
+import com.hanghea99.commerce.api.store.domain.*
+import org.springframework.web.bind.annotation.*
 import java.time.Instant
 
 @RestController
@@ -21,8 +13,6 @@ class StoreController(val storeService: StoreService) {
     @PostMapping("")
     @Throws(Exception::class)
     fun postStore(@RequestBody postStoreRequest: PostStoreRequest): PostStoreResponse {
-        println("====================")
-
         return PostStoreResponse(
             resultCodeMsg = ResultCodeMsg.SUCCESS,
             result = StoreVo(
@@ -42,8 +32,40 @@ class StoreController(val storeService: StoreService) {
 
     @GetMapping("")
     @Throws(Exception::class)
-    fun getStore(@RequestBody getStoreRequest: GetStoreRequest): String {
-        return "hello"
+    fun getStore( getStoreRequest: GetStoreRequest): GetStoreResponse {
+        return GetStoreResponse(
+            code = ResultCodeMsg.SUCCESS.code,
+            msg = ResultCodeMsg.SUCCESS.msg,
+            result = GetStoreResult(
+                totalCount = 100,
+                stores = listOf(
+                    StoreVo(
+                        storeKey = 0,
+                        status = "G",
+                        name = "hello",
+                        description = "hello description",
+                        shippingAndRefundPolicy = "",
+                        businessForDistanceSellingNumber = "",
+                        informationManagerName = "",
+                        informationManagerEmail = "",
+                        modDt = Instant.now(),
+                        regDt = Instant.now(),
+                    ),
+                    StoreVo(
+                        storeKey = 0,
+                        status = "G",
+                        name = "hello",
+                        description = "hello description",
+                        shippingAndRefundPolicy = "",
+                        businessForDistanceSellingNumber = "",
+                        informationManagerName = "",
+                        informationManagerEmail = "",
+                        modDt = Instant.now(),
+                        regDt = Instant.now(),
+                    )
+                )
+            )
+        )
     }
 
 

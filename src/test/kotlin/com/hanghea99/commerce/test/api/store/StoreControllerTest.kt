@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.StoreController
 import com.hanghea99.commerce.api.store.StoreService
+import com.hanghea99.commerce.api.store.domain.PostStoreDeleteRequest
 import com.hanghea99.commerce.api.store.domain.PostStoreRequest
+import com.hanghea99.commerce.api.store.domain.PostStoreUpdateRequest
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -50,7 +52,9 @@ class StoreControllerTest {
 
         //WHEN //THEN
         mockMvc.perform(
-            post("/api/store").content(jsonBody).contentType(MediaType.APPLICATION_JSON)
+            post("/api/store")
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(
             MockMvcResultMatchers.status().isOk
@@ -73,6 +77,46 @@ class StoreControllerTest {
         mockMvc.perform(
             get("/api/store")
                 .queryParams(queryParams)
+        ).andExpectAll(
+            MockMvcResultMatchers.status().isOk
+        ).andDo(
+            MockMvcResultHandlers.print()
+        )
+    }
+
+    @Test
+    fun `GET apiStoreUpdate 정상 요청`() {
+        // GIVEN
+        val request = PostStoreUpdateRequest(
+            updateKeys = listOf(1, 2, 3, 4, 5)
+        )
+        val jsonBody = objectMapper.writeValueAsString(request)
+        //WHEN //THEN
+        mockMvc.perform(
+            post("/api/store/update")
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpectAll(
+            MockMvcResultMatchers.status().isOk
+        ).andDo(
+            MockMvcResultHandlers.print()
+        )
+    }
+
+    @Test
+    fun `GET apiStoreDelete 정상 요청`() {
+        // GIVEN
+        val request = PostStoreDeleteRequest(
+            deleteKeys = listOf(1, 2, 3, 4, 5)
+        )
+        val jsonBody = objectMapper.writeValueAsString(request)
+        //WHEN //THEN
+        mockMvc.perform(
+            post("/api/store/delete")
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
         ).andExpectAll(
             MockMvcResultMatchers.status().isOk
         ).andDo(

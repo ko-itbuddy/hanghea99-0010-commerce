@@ -1,6 +1,7 @@
 package com.hanghea99.commerce.api.store
 
 import com.hanghea99.commerce.api.common.ResultCodeMsg
+import com.hanghea99.commerce.api.common.domain.PostNullResultResponse
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.domain.*
 import org.springframework.web.bind.annotation.*
@@ -66,6 +67,18 @@ class StoreController(val storeService: StoreService) {
                 )
             )
         )
+    }
+
+    @PostMapping("/update")
+    @Throws(Exception::class)
+    fun postStoreUpdate(@RequestBody postStoreUpdateRequest: PostStoreUpdateRequest): PostNullResultResponse {
+        return PostNullResultResponse(ResultCodeMsg.SUCCESS)
+    }
+
+    @PostMapping("/delete")
+    @Throws(Exception::class)
+    fun postStoreDelete(@RequestBody postStoreDeleteRequest: PostStoreDeleteRequest): PostNullResultResponse {
+        return PostNullResultResponse(ResultCodeMsg.SUCCESS)
     }
 
 

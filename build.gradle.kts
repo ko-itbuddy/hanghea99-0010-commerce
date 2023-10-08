@@ -40,6 +40,7 @@ dependencies {
 	testImplementation("io.kotest:kotest-runner-junit5:${Versions.koTestVersion}")
 	testImplementation("io.kotest:kotest-assertions-core:${Versions.koTestVersion}")
 	testImplementation("io.kotest:kotest-property:${Versions.koTestVersion}")
+	testImplementation("io.mockk:mockk:1.13.8")
 
 
 	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")

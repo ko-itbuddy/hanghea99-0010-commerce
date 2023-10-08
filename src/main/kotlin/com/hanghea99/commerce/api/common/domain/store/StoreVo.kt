@@ -3,7 +3,7 @@ package com.hanghea99.commerce.api.common.domain.store
 import java.time.Instant
 
 data class StoreVo(
-    var storeKey: Long,
+    var storeKey: Long? = null,
     var status: String,
     var name: String,
     var description: String,

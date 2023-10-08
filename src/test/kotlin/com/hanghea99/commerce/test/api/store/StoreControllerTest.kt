@@ -36,7 +36,6 @@ class StoreControllerTest {
         // GIVEN
         val request = PostStoreRequest(
             store = StoreVo(
-                storeKey = 0,
                 status = "G",
                 name = "hello",
                 description = "hello description",
@@ -88,7 +87,18 @@ class StoreControllerTest {
     fun `GET apiStoreUpdate 정상 요청`() {
         // GIVEN
         val request = PostStoreUpdateRequest(
-            updateKeys = listOf(1, 2, 3, 4, 5)
+            store = StoreVo(
+                storeKey = 1,
+                status = "G",
+                name = "hello",
+                description = "hello description",
+                shippingAndRefundPolicy = "",
+                businessForDistanceSellingNumber = "",
+                informationManagerName = "",
+                informationManagerEmail = "",
+                modDt = Instant.now(),
+                regDt = Instant.now(),
+            )
         )
         val jsonBody = objectMapper.writeValueAsString(request)
         //WHEN //THEN

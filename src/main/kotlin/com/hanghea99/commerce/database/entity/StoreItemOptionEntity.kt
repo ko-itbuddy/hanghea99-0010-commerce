@@ -15,10 +15,19 @@ import java.math.BigDecimal
 @Table(name = "STORE_ITEM_OPTION")
 open class StoreItemOptionEntity {
 
+    constructor(
+        optionKey: Long? = null,
+        itemKey: Long? = null,
+        name: String? = null,
+        price: BigDecimal? = null,
+        inventory: Long? = null,
+        cartItemEntities: MutableSet<CartItemEntity> = mutableSetOf(),
+        purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
+    )
+
     @Id
     @GeneratedValue(
-        strategy = GenerationType.TABLE,
-        generator = "STORE_ITEM_OPTION_SEQ_GENERATOR"
+        strategy = GenerationType.TABLE, generator = "STORE_ITEM_OPTION_SEQ_GENERATOR"
     )
     @NotNull
     @Column(name = "OPTION_KEY", nullable = false)

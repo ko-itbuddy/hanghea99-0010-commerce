@@ -14,8 +14,18 @@ import jakarta.validation.constraints.Size
 @Table(name = "SELLER_REQUEST_REGISTRATION")
 open class SellerRequestRegistrationEntity {
 
+    constructor(
+        sellerRequestRegistrationKey: Long? = null,
+        sellerId: String? = null,
+        sellerEntity: SellerEntity? = null,
+        status: String? = null,
+    )
+
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "SELLER_REQUEST_REGISTRATION_SEQ_GENERATOR")
+    @GeneratedValue(
+        strategy = GenerationType.TABLE,
+        generator = "SELLER_REQUEST_REGISTRATION_SEQ_GENERATOR"
+    )
     @NotNull
     @Column(name = "SELLER_REQUEST_REGISTRATION_KEY", nullable = false)
     open var sellerRequestRegistrationKey: Long? = null

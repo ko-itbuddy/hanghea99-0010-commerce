@@ -14,6 +14,13 @@ import jakarta.validation.constraints.Size
 @Table(name = "PAYMENT")
 open class PaymentEntity {
 
+    constructor(
+        paymentKey: Long? = null,
+        purchaseKey: Long? = null,
+        purchaseEntity: PurchaseEntity? = null,
+        kind: String? = null,
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PAYMENT_SEQ_GENERATOR")
     @NotNull

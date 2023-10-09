@@ -14,6 +14,23 @@ import java.time.Instant
 )
 @Table(name = "STORE")
 open class StoreEntity {
+    constructor(
+        storeKey: Long? = null,
+        sellerId: String? = null,
+        sellerEntity: SellerEntity? = null,
+        status: String? = null,
+        name: String? = null,
+        desc: String? = null,
+        shippingAndRefundPolicy: String? = null,
+        businessForDistanceSellingNumber: String? = null,
+        informationManagerName: String? = null,
+        email: String? = null,
+        createdAt: Instant? = null,
+        updatedAt: Instant? = null,
+        deletedAt: Instant? = null,
+        blockedAt: Instant? = null,
+        storeItemEntities: MutableSet<StoreItemEntity> = mutableSetOf(),
+    )
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "STORE_SEQ_GENERATOR")

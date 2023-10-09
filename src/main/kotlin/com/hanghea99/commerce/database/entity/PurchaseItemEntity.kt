@@ -13,6 +13,17 @@ import jakarta.validation.constraints.NotNull
 @Table(name = "PURCHASE_ITEM")
 open class PurchaseItemEntity {
 
+    constructor(
+        purchaseItemKey: Long? = null,
+        reviewId: Long? = null,
+        purchaseKey: Long? = null,
+        optionKey: Long? = null,
+        reviewEntity: ReviewEntity? = null,
+        purchaseEntity: PurchaseEntity? = null,
+        storeItemoptionEntity: StoreItemOptionEntity? = null,
+        deliveries: MutableSet<DeliveryEntity> = mutableSetOf(),
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_ITEM_SEQ_GENERATOR")
     @NotNull

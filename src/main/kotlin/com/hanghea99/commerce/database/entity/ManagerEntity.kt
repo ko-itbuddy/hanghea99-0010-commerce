@@ -11,6 +11,21 @@ import java.time.Instant
 @Table(name = "MANAGER")
 open class ManagerEntity {
 
+    constructor(
+        managerId: String? = null,
+        status: String? = null,
+        password: String? = null,
+        name: String? = null,
+        ssn: String? = null,
+        telNumber: String? = null,
+        zipCode: String? = null,
+        adress: String? = null,
+        auth: String? = null,
+        createdAt: Instant? = null,
+        updatedAt: Instant? = null,
+        deletedAt: Instant? = null,
+    )
+
     @Id
     @Size(max = 20)
     @Column(name = "MANAGER_ID", nullable = false, length = 20)

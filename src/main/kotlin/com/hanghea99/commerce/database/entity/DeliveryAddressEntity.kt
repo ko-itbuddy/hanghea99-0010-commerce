@@ -14,6 +14,16 @@ import jakarta.validation.constraints.Size
 @Table(name = "DELIVERY_ADDRESS")
 open class DeliveryAddressEntity {
 
+    constructor(
+        deliveryAddressKey: Long? = null,
+        userId: Long? = null,
+        userEntity: UserEntity? = null,
+        name: String? = null,
+        address: String? = null,
+        ddressDetail: String? = null,
+        zipCode: String? = null,
+    )
+
     @Id
     @GeneratedValue(
         strategy = GenerationType.TABLE,

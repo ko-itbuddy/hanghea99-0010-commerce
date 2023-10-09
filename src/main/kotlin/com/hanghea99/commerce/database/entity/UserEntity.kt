@@ -7,6 +7,23 @@ import java.time.Instant
 @Entity
 @Table(name = "USER")
 open class UserEntity {
+
+    constructor(
+        id: Long? = null,
+        email: Long? = null,
+        password: Long? = null,
+        address: String? = null,
+        nickname: String? = null,
+        createdAt: Instant? = null,
+        updatedAt: Instant? = null,
+        deletedAt: Instant? = null,
+        cartEntities: MutableSet<CartEntity> = mutableSetOf(),
+        deliveryAddressEntities: MutableSet<DeliveryAddressEntity> = mutableSetOf(),
+        favoriteEntities: MutableSet<FavoriteEntity> = mutableSetOf(),
+        purchaseEntities: MutableSet<PurchaseEntity> = mutableSetOf(),
+        agreeAt: Instant? = null,
+    )
+
     @Id
     @Column(name = "USER_ID", nullable = false)
     open var id: Long? = null

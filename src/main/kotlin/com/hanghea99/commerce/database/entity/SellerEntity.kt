@@ -7,6 +7,31 @@ import java.time.Instant
 @Entity
 @Table(name = "SELLER")
 open class SellerEntity {
+
+    constructor(
+        sellerId: String? = null,
+        status: String? = null,
+        password: String? = null,
+        name: String? = null,
+        ssn: String? = null,
+        telecomName: String? = null,
+        phoneNumber: String? = null,
+        companyName: String? = null,
+        businessRegestraionNumber: String? = null,
+        representativeName: String? = null,
+        representativeTelephoneNumber: String? = null,
+        faxNumber: String? = null,
+        businessZipCode: String? = null,
+        businiessAddress: String? = null,
+        createdAt: Instant? = null,
+        updatedAt: Instant? = null,
+        deletedAt: Instant? = null,
+        allowedAt: Instant? = null,
+        blockedAt: Instant? = null,
+        sellerRequestRegistrationEntities: MutableSet<SellerRequestRegistrationEntity> = mutableSetOf(),
+        stores: MutableSet<StoreEntity> = mutableSetOf(),
+    )
+
     @Id
     @Size(max = 20)
     @Column(name = "SELLER_ID", nullable = false, length = 20)

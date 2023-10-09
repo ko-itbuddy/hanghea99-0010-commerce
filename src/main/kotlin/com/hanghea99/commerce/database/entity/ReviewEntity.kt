@@ -11,6 +11,14 @@ import jakarta.persistence.*
 )
 @Table(name = "REVIEW")
 open class ReviewEntity {
+
+    constructor(
+        id: Long? = null,
+        reviewPoint: Long? = null,
+        content: String? = null,
+        purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "REVIEW_SEQ_GENERATOR")
     @Column(name = "REVIEW_ID", nullable = false)
@@ -19,7 +27,7 @@ open class ReviewEntity {
     @Column(name = "REVIEW_POINT")
     open var reviewPoint: Long? = null
 
-    
+
     @Column(name = "CONTENT")
     open var content: String? = null
 

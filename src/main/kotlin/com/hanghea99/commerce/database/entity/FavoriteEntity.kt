@@ -13,6 +13,13 @@ import jakarta.validation.constraints.NotNull
 @Table(name = "FAVORITE")
 open class FavoriteEntity {
 
+    constructor(
+        favoriteKey: Long? = null,
+        userId: Long? = null,
+        userEntity: UserEntity? = null,
+        favoriteItemEntities: MutableSet<FavoriteItemEntity> = mutableSetOf(),
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "FAVORITE_SEQ_GENERATOR")
     @NotNull

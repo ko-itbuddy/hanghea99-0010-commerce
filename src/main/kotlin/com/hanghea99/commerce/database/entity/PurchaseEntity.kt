@@ -16,6 +16,18 @@ import java.time.Instant
 @Table(name = "PURCHASE")
 open class PurchaseEntity {
 
+    constructor(
+        purchaseKey: Long? = null,
+        userId: Long? = null,
+        userEntity: UserEntity? = null,
+        totalPrice: BigDecimal? = null,
+        purchaseDate: Instant? = null,
+        cancleDate: Instant? = null,
+        status: String? = null,
+        paymentEntities: MutableSet<PaymentEntity> = mutableSetOf(),
+        purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_SEQ_GENERATOR")
     @NotNull

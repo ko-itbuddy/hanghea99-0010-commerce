@@ -14,6 +14,17 @@ import jakarta.validation.constraints.Size
 @Table(name = "STORE_ITEM")
 open class StoreItemEntity {
 
+    constructor(
+        itemKey: Long? = null,
+        storeKey: Long? = null,
+        sellerId: String? = null,
+        itemId: String? = null,
+        name: String? = null,
+        desc: String? = null,
+        favoriteItemEntities: MutableSet<FavoriteItemEntity> = mutableSetOf(),
+        storeItemOptionEntities: MutableSet<StoreItemOptionEntity> = mutableSetOf(),
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "STORE_ITEM_SEQ_GENERATOR")
     @NotNull

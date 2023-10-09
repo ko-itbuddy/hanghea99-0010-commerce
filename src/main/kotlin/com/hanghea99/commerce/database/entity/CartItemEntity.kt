@@ -13,6 +13,14 @@ import jakarta.validation.constraints.NotNull
 @Table(name = "CART_ITEM")
 open class CartItemEntity {
 
+    constructor(
+        cartProductKey: Long? = null,
+        cartKey: Long? = null,
+        optionKey: Long? = null,
+        cartEntity: CartEntity? = null,
+        storeItemOptionEntity: StoreItemOptionEntity? = null,
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "CART_ITEM_SEQ_GENERATOR")
     @NotNull

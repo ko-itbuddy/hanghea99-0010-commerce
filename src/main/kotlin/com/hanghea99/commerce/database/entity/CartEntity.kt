@@ -12,6 +12,12 @@ import jakarta.validation.constraints.NotNull
     allocationSize = 50,
 )
 open class CartEntity {
+    constructor(
+        cartKey: Long? = null,
+        userId: Long? = null,
+        userEntity: UserEntity? = null,
+        cartItemEntities: MutableSet<CartItemEntity> = mutableSetOf(),
+    )
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "CART_SEQ_GENERATOR")

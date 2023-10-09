@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 import org.springframework.validation.annotation.Validated
 
 @Component
-@Validated
 class StoreManager(var storeRepository: StoreRepository) : ManagerComponent<StoreEntity, Long>() {
     override fun update(entities: List<StoreEntity>): Long {
         return storeRepository.saveAllAndFlush(entities).count().toLong()

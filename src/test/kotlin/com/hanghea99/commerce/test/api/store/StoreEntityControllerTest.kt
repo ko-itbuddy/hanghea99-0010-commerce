@@ -22,8 +22,10 @@ import java.time.Instant
 
 @WebMvcTest(StoreController::class)
 class StoreEntityControllerTest {
+
     @Autowired
     lateinit var mockMvc: MockMvc
+
     @Autowired
     lateinit var objectMapper: ObjectMapper
 

@@ -16,6 +16,13 @@ import java.time.Instant
 )
 @Table(name = "STORE")
 open class StoreEntity {
+    companion object{
+        val STAUS_READEY: String = "READY"
+        val STAUS_OPEN: String = "OPEN"
+        val STAUS_CLOSE: String = "CLOSE"
+        val STAUS_BLOCK: String = "BLOCK"
+    }
+
     constructor(
         storeKey: Long? = null,
         sellerId: String? = null,

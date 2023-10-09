@@ -14,21 +14,7 @@ class StoreController(val storeService: StoreService) {
     @PostMapping("")
     @Throws(Exception::class)
     fun postStore(@RequestBody postStoreRequest: PostStoreRequest): PostStoreResponse {
-        return PostStoreResponse(
-            resultCodeMsg = ResultCodeMsg.SUCCESS,
-            result = StoreVo(
-                storeKey = 0,
-                status = "G",
-                name = "hello",
-                description = "hello description",
-                shippingAndRefundPolicy = "",
-                businessForDistanceSellingNumber = "",
-                informationManagerName = "",
-                informationManagerEmail = "",
-                modDt = Instant.now(),
-                regDt = Instant.now(),
-            ),
-        )
+        return storeService.postStore(postStoreRequest)
     }
 
     @GetMapping("")

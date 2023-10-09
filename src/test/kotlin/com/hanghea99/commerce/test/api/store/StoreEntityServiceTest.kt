@@ -17,10 +17,10 @@ import java.time.Instant
 @ExtendWith(MockKExtension::class)
 class StoreEntityServiceTest {
 
-    val storeManager: StoreManager = mockk()
-    val storeReader: StoreReader = mockk()
+    val storeManager: StoreManager = mockk<StoreManager>()
+    val storeReader: StoreReader = mockk<StoreReader>()
 
-    val storeService: StoreService = mockk()
+    val storeService: StoreService = mockk<StoreService>()
 
 
     @Test

@@ -79,7 +79,7 @@ public class DataSourceConfig {
         }
     }
 
-    @Profile("local|dev|stg")
+    @Profile("dev|default")
     @Bean(name = "routingDataSource")
     public DataSource otherRoutingDataSource(
         @Qualifier("masterDataSource") DataSource masterDataSource,
@@ -115,7 +115,7 @@ public class DataSourceConfig {
     }
 
     @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean pineSurveyEntityManagerFactory(
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
         @Qualifier("dataSource") DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());

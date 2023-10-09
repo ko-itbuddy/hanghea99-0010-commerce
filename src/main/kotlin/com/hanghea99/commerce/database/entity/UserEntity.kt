@@ -2,6 +2,8 @@ package com.hanghea99.commerce.database.entity
 
 import jakarta.persistence.*
 import jakarta.validation.constraints.Size
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
 
 @Entity
@@ -41,9 +43,11 @@ open class UserEntity {
     @Column(name = "NICKNAME", length = 20)
     open var nickname: String? = null
 
+    @CreationTimestamp
     @Column(name = "CREATED_AT", updatable = false)
     open var createdAt: Instant? = null
 
+    @UpdateTimestamp
     @Column(name = "UPDATED_AT")
     open var updatedAt: Instant? = null
 

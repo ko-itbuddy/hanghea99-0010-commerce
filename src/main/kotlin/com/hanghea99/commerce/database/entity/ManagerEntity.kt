@@ -49,28 +49,28 @@ open class ManagerEntity(
 
     @Size(max = 15)
     @Column(name = "TEL_NUMBER", length = 15)
-    var telNumber: String? = telNumber
+    open var telNumber: String? = telNumber
 
     @Size(max = 10)
     @Column(name = "ZIP_CODE", length = 10)
-    var zipCode: String? = zipCode
+    open var zipCode: String? = zipCode
 
     @Size(max = 255)
     @Column(name = "ADRESS")
-    var adress: String? = adress
+    open var adress: String? = adress
 
     @Size(max = 20)
     @Column(name = "AUTH", length = 20)
-    var auth: String? = auth
+    open var auth: String? = auth
 
     @CreationTimestamp
     @Column(name = "CREATED_AT", updatable = false)
-    var createdAt: Instant? = createdAt
+    open var createdAt: Instant? = createdAt
 
     @UpdateTimestamp
     @Column(name = "UPDATED_AT")
-    var updatedAt: Instant? = updatedAt
+    open var updatedAt: Instant? = updatedAt
 
     @Column(name = "DELETED_AT")
-    var deletedAt: Instant? = deletedAt
+    open var deletedAt: Instant? = deletedAt
 }

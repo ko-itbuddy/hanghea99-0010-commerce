@@ -50,9 +50,9 @@ open class DeliveryAddressEntity(
 
     
     @Column(name = "DDRESS_DETAIL")
-    var ddressDetail: String? = ddressDetail
+    open var ddressDetail: String? = ddressDetail
 
     @Size(max = 10)
     @Column(name = "ZIP_CODE", length = 10)
-    var zipCode: String? = zipCode
+    open var zipCode: String? = zipCode
 }

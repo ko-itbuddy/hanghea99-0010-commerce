@@ -12,14 +12,12 @@ import jakarta.validation.constraints.Size
     allocationSize = 50,
 )
 @Table(name = "SELLER_REQUEST_REGISTRATION")
-open class SellerRequestRegistrationEntity {
-
-    constructor(
-        sellerRequestRegistrationKey: Long? = null,
-        sellerId: String? = null,
-        sellerEntity: SellerEntity? = null,
-        status: String? = null,
-    )
+open class SellerRequestRegistrationEntity(
+    sellerRequestRegistrationKey: Long? = null,
+    sellerId: String? = null,
+    sellerEntity: SellerEntity? = null,
+    status: String? = null,
+) {
 
     @Id
     @GeneratedValue(
@@ -28,19 +26,19 @@ open class SellerRequestRegistrationEntity {
     )
     @NotNull
     @Column(name = "SELLER_REQUEST_REGISTRATION_KEY", nullable = false)
-    open var sellerRequestRegistrationKey: Long? = null
+    var sellerRequestRegistrationKey: Long? = sellerRequestRegistrationKey
 
     @Size(max = 20)
     @NotNull
     @Column(name = "SELLER_ID", nullable = false, length = 20)
-    open var sellerId: String? = null
+    var sellerId: String? = sellerId
 
     @MapsId("sellerId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SELLER_ID", nullable = false)
-    open var sellerEntity: SellerEntity? = null
+    var sellerEntity: SellerEntity? = sellerEntity
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    open var status: String? = null
+    var status: String? = status
 }

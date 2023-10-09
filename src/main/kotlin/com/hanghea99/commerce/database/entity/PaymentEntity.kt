@@ -12,31 +12,29 @@ import jakarta.validation.constraints.Size
     allocationSize = 50,
 )
 @Table(name = "PAYMENT")
-open class PaymentEntity {
-
-    constructor(
-        paymentKey: Long? = null,
-        purchaseKey: Long? = null,
-        purchaseEntity: PurchaseEntity? = null,
-        kind: String? = null,
-    )
+open class PaymentEntity(
+    paymentKey: Long? = null,
+    purchaseKey: Long? = null,
+    purchaseEntity: PurchaseEntity? = null,
+    kind: String? = null,
+) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PAYMENT_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PAYMENT_KEY", nullable = false)
-    open var paymentKey: Long? = null
+    var paymentKey: Long? = paymentKey
 
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
-    open var purchaseKey: Long? = null
+    var purchaseKey: Long? = purchaseKey
 
     @MapsId("purchaseKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY")
-    open var purchaseEntity: PurchaseEntity? = null
+    var purchaseEntity: PurchaseEntity? = purchaseEntity
 
     @Size(max = 20)
     @Column(name = "KIND", length = 20)
-    open var kind: String? = null
+    var kind: String? = kind
 }

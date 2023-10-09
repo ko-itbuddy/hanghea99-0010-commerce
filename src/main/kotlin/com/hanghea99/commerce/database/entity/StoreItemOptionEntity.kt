@@ -13,17 +13,15 @@ import java.math.BigDecimal
     allocationSize = 50,
 )
 @Table(name = "STORE_ITEM_OPTION")
-open class StoreItemOptionEntity {
-
-    constructor(
-        optionKey: Long? = null,
-        itemKey: Long? = null,
-        name: String? = null,
-        price: BigDecimal? = null,
-        inventory: Long? = null,
-        cartItemEntities: MutableSet<CartItemEntity> = mutableSetOf(),
-        purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
-    )
+open class StoreItemOptionEntity(
+    optionKey: Long? = null,
+    itemKey: Long? = null,
+    name: String? = null,
+    price: BigDecimal? = null,
+    inventory: Long? = null,
+    cartItemEntities: MutableSet<CartItemEntity> = mutableSetOf(),
+    purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
+) {
 
     @Id
     @GeneratedValue(
@@ -31,26 +29,26 @@ open class StoreItemOptionEntity {
     )
     @NotNull
     @Column(name = "OPTION_KEY", nullable = false)
-    open var optionKey: Long? = null
+    var optionKey: Long? = optionKey
 
     @NotNull
     @Column(name = "ITEM_KEY", nullable = false)
-    open var itemKey: Long? = null
+    var itemKey: Long? = itemKey
 
 
     @Size(max = 255)
     @Column(name = "NAME")
-    open var name: String? = null
+    var name: String? = name
 
     @Column(name = "PRICE", precision = 20, scale = 2)
-    open var price: BigDecimal? = null
+    var price: BigDecimal? = price
 
     @Column(name = "INVENTORY")
-    open var inventory: Long? = null
+    var inventory: Long? = inventory
 
     @OneToMany(mappedBy = "storeItemOptionEntity")
-    open var cartItemEntities: MutableSet<CartItemEntity> = mutableSetOf()
+    var cartItemEntities: MutableSet<CartItemEntity> = cartItemEntities
 
     @OneToMany(mappedBy = "storeItemoptionEntity")
-    open var purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf()
+    var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
 }

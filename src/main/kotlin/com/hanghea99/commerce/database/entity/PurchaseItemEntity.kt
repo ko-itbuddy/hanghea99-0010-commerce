@@ -11,52 +11,50 @@ import jakarta.validation.constraints.NotNull
     allocationSize = 50,
 )
 @Table(name = "PURCHASE_ITEM")
-open class PurchaseItemEntity {
-
-    constructor(
-        purchaseItemKey: Long? = null,
-        reviewId: Long? = null,
-        purchaseKey: Long? = null,
-        optionKey: Long? = null,
-        reviewEntity: ReviewEntity? = null,
-        purchaseEntity: PurchaseEntity? = null,
-        storeItemoptionEntity: StoreItemOptionEntity? = null,
-        deliveries: MutableSet<DeliveryEntity> = mutableSetOf(),
-    )
+open class PurchaseItemEntity(
+    purchaseItemKey: Long? = null,
+    reviewId: Long? = null,
+    purchaseKey: Long? = null,
+    optionKey: Long? = null,
+    reviewEntity: ReviewEntity? = null,
+    purchaseEntity: PurchaseEntity? = null,
+    storeItemoptionEntity: StoreItemOptionEntity? = null,
+    deliveries: MutableSet<DeliveryEntity> = mutableSetOf(),
+) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PURCHASE_ITEM_KEY", nullable = false)
-    open var purchaseItemKey: Long? = null
+    var purchaseItemKey: Long? = purchaseItemKey
 
     @NotNull
     @Column(name = "REVIEW_ID", nullable = false)
-    open var reviewId: Long? = null
+    var reviewId: Long? = reviewId
 
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
-    open var purchaseKey: Long? = null
+    var purchaseKey: Long? = purchaseKey
 
     @NotNull
     @Column(name = "OPTION_KEY", nullable = false)
-    open var optionKey: Long? = null
+    var optionKey: Long? = optionKey
 
     @MapsId("reviewId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "REVIEW_ID", nullable = false)
-    open var reviewEntity: ReviewEntity? = null
+    var reviewEntity: ReviewEntity? = reviewEntity
 
     @MapsId("purchaseKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY")
-    open var purchaseEntity: PurchaseEntity? = null
+    var purchaseEntity: PurchaseEntity? = purchaseEntity
 
     @MapsId("optionKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY")
-    open var storeItemoptionEntity: StoreItemOptionEntity? = null
+    var storeItemoptionEntity: StoreItemOptionEntity? = storeItemoptionEntity
 
     @OneToMany(mappedBy = "purchaseItemEntity")
-    open var deliveries: MutableSet<DeliveryEntity> = mutableSetOf()
+    var deliveries: MutableSet<DeliveryEntity> = deliveries
 }

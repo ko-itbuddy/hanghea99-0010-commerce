@@ -10,27 +10,25 @@ import jakarta.persistence.*
     allocationSize = 50,
 )
 @Table(name = "REVIEW")
-open class ReviewEntity {
-
-    constructor(
-        id: Long? = null,
-        reviewPoint: Long? = null,
-        content: String? = null,
-        purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
-    )
+open class ReviewEntity(
+    id: Long? = null,
+    reviewPoint: Long? = null,
+    content: String? = null,
+    purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
+) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "REVIEW_SEQ_GENERATOR")
     @Column(name = "REVIEW_ID", nullable = false)
-    open var id: Long? = null
+    var id: Long? = id
 
     @Column(name = "REVIEW_POINT")
-    open var reviewPoint: Long? = null
+    var reviewPoint: Long? = reviewPoint
 
 
     @Column(name = "CONTENT")
-    open var content: String? = null
+    var content: String? = content
 
     @OneToMany(mappedBy = "reviewEntity")
-    open var purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf()
+    var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
 }

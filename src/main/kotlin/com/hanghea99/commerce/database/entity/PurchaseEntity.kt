@@ -14,51 +14,49 @@ import java.time.Instant
     allocationSize = 50,
 )
 @Table(name = "PURCHASE")
-open class PurchaseEntity {
-
-    constructor(
-        purchaseKey: Long? = null,
-        userId: Long? = null,
-        userEntity: UserEntity? = null,
-        totalPrice: BigDecimal? = null,
-        purchaseDate: Instant? = null,
-        cancleDate: Instant? = null,
-        status: String? = null,
-        paymentEntities: MutableSet<PaymentEntity> = mutableSetOf(),
-        purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
-    )
+open class PurchaseEntity(
+    purchaseKey: Long? = null,
+    userId: Long? = null,
+    userEntity: UserEntity? = null,
+    totalPrice: BigDecimal? = null,
+    purchaseDate: Instant? = null,
+    cancleDate: Instant? = null,
+    status: String? = null,
+    paymentEntities: MutableSet<PaymentEntity> = mutableSetOf(),
+    purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf(),
+) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
-    open var purchaseKey: Long? = null
+    var purchaseKey: Long? = purchaseKey
 
     @NotNull
     @Column(name = "USER_ID", nullable = false)
-    open var userId: Long? = null
+    var userId: Long? = userId
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    open var userEntity: UserEntity? = null
+    var userEntity: UserEntity? = userEntity
 
     @Column(name = "TOTAL_PRICE", precision = 20, scale = 2)
-    open var totalPrice: BigDecimal? = null
+    var totalPrice: BigDecimal? = totalPrice
 
     @Column(name = "PURCHASE_DATE")
-    open var purchaseDate: Instant? = null
+    var purchaseDate: Instant? = purchaseDate
 
     @Column(name = "CANCLE_DATE")
-    open var cancleDate: Instant? = null
+    var cancleDate: Instant? = cancleDate
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    open var status: String? = null
+    var status: String? = status
 
     @OneToMany(mappedBy = "purchaseEntity")
-    open var paymentEntities: MutableSet<PaymentEntity> = mutableSetOf()
+    var paymentEntities: MutableSet<PaymentEntity> = paymentEntities
 
     @OneToMany(mappedBy = "purchaseEntity")
-    open var purchaseItemEntities: MutableSet<PurchaseItemEntity> = mutableSetOf()
+    var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
 }

@@ -11,37 +11,35 @@ import jakarta.validation.constraints.NotNull
     allocationSize = 50,
 )
 @Table(name = "FAVORITE_ITEM")
-open class FavoriteItemEntity {
-
-    constructor(
-        favoriteItemKey: Long? = null,
-        itemKey: Long? = null,
-        favoriteKey: Long? = null,
-        storeItemEntity: StoreItemEntity? = null,
-        favoriteEntity: FavoriteEntity? = null,
-    )
+open class FavoriteItemEntity(
+    favoriteItemKey: Long? = null,
+    itemKey: Long? = null,
+    favoriteKey: Long? = null,
+    storeItemEntity: StoreItemEntity? = null,
+    favoriteEntity: FavoriteEntity? = null,
+) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "FAVORITE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "FAVORITE_ITEM_KEY", nullable = false)
-    open var favoriteItemKey: Long? = null
+    var favoriteItemKey: Long? = favoriteItemKey
 
     @NotNull
     @Column(name = "ITEM_KEY", nullable = false)
-    open var itemKey: Long? = null
+    var itemKey: Long? = itemKey
 
     @NotNull
     @Column(name = "FAVORITE_KEY", nullable = false)
-    open var favoriteKey: Long? = null
+    var favoriteKey: Long? = favoriteKey
 
     @MapsId("itemKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ITEM_KEY", nullable = false, referencedColumnName = "ITEM_KEY")
-    open var storeItemEntity: StoreItemEntity? = null
+    var storeItemEntity: StoreItemEntity? = storeItemEntity
 
     @MapsId("favoriteKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "FAVORITE_KEY", nullable = false, referencedColumnName = "FAVORITE_KEY")
-    open var favoriteEntity: FavoriteEntity? = null
+    var favoriteEntity: FavoriteEntity? = favoriteEntity
 }

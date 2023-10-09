@@ -11,30 +11,28 @@ import jakarta.validation.constraints.NotNull
     allocationSize = 50,
 )
 @Table(name = "FAVORITE")
-open class FavoriteEntity {
-
-    constructor(
-        favoriteKey: Long? = null,
-        userId: Long? = null,
-        userEntity: UserEntity? = null,
-        favoriteItemEntities: MutableSet<FavoriteItemEntity> = mutableSetOf(),
-    )
+open class FavoriteEntity(
+    favoriteKey: Long? = null,
+    userId: Long? = null,
+    userEntity: UserEntity? = null,
+    favoriteItemEntities: MutableSet<FavoriteItemEntity> = mutableSetOf(),
+) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "FAVORITE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "FAVORITE_KEY", nullable = false)
-    open var favoriteKey: Long? = null
+    var favoriteKey: Long? = favoriteKey
 
     @NotNull
     @Column(name = "USER_ID", nullable = false)
-    open var userId: Long? = null
+    var userId: Long? = userId
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    open var userEntity: UserEntity? = null
+    var userEntity: UserEntity? = userEntity
 
     @OneToMany(mappedBy = "favoriteEntity")
-    open var favoriteItemEntities: MutableSet<FavoriteItemEntity> = mutableSetOf()
+    var favoriteItemEntities: MutableSet<FavoriteItemEntity> = favoriteItemEntities
 }

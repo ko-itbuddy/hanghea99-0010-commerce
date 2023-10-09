@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import java.time.Instant
 
 @ExtendWith(MockKExtension::class)
-class StoreServiceTest {
+class StoreEntityServiceTest {
 
     val storeManager: StoreManager = mockk()
     val storeReader: StoreReader = mockk()

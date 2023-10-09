@@ -49,6 +49,7 @@ dependencies {
 	kapt("com.querydsl:querydsl-kotlin-codegen:5.0.0")
 
 
+	implementation("net.ttddyy:datasource-proxy:1.9")
 }
 
 tasks.withType<KotlinCompile> {

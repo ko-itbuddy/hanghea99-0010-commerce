@@ -21,7 +21,7 @@ import org.springframework.util.LinkedMultiValueMap
 import java.time.Instant
 
 @WebMvcTest(StoreController::class)
-class StoreControllerTest {
+class StoreEntityControllerTest {
     @Autowired
     lateinit var mockMvc: MockMvc
     @Autowired

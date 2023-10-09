@@ -8,3 +8,14 @@ spring:
       validation-timeout: 5000
       minimum-idle: 5
       maximum-pool-size: 500
+  jpa:
+    hibernate:
+      default_batch_fetch_size: 500
+      hbm2ddl.auto: none
+      dialect: org.hibernate.dialect.MySQL57Dialect
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate.jdbc.batch_size: 100
+      hibernate.order_inserts: true
+      hibernate.order_updates: true

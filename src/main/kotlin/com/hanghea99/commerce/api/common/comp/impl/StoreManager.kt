@@ -4,7 +4,6 @@ import com.hanghea99.commerce.api.common.comp.ManagerComponent
 import com.hanghea99.commerce.database.entity.StoreEntity
 import com.hanghea99.commerce.database.repository.StoreRepository
 import org.springframework.stereotype.Component
-import org.springframework.validation.annotation.Validated
 
 @Component
 class StoreManager(var storeRepository: StoreRepository) : ManagerComponent<StoreEntity, Long>() {

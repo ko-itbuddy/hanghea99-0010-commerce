@@ -1,7 +1,7 @@
 spring:
   datasource:
     write:
-      jdbc-url: ${SPRING_DATASOURCE_URL}?serverTimezone=Asia/Seoul?log
+      jdbc-url: ${SPRING_DATASOURCE_URL}?serverTimezone=Asia/Seoul
       username: ${SPRING_DATASOURCE_USERNAME}
       password: ${SPRING_DATASOURCE_PASSWORD}
       minimum-idle: 5
@@ -10,7 +10,7 @@ spring:
       connection-timeout: 5000
       validation-timeout: 5000
     read:
-      jdbc-url: ${SPRING_DATASOURCE_URL}?serverTimezone=Asia/Seoul?log
+      jdbc-url: ${SPRING_DATASOURCE_URL}?serverTimezone=Asia/Seoul
       username: ${SPRING_DATASOURCE_USERNAME}
       password: ${SPRING_DATASOURCE_PASSWORD}
       minimum-idle: 5

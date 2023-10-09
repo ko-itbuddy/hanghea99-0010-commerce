@@ -4,12 +4,15 @@ import com.hanghea99.commerce.api.common.ResultCodeMsg
 import com.hanghea99.commerce.api.common.domain.PostNullResultResponse
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.domain.*
+import com.hanghea99.commerce.logger
+import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
 
 @RestController
 @RequestMapping("/api/store")
 class StoreController(val storeService: StoreService) {
+    private val log = logger()
 
     @PostMapping("")
     @Throws(Exception::class)
@@ -20,51 +23,19 @@ class StoreController(val storeService: StoreService) {
     @GetMapping("")
     @Throws(Exception::class)
     fun getStore( getStoreRequest: GetStoreRequest): GetStoreResponse {
-        return GetStoreResponse(
-            code = ResultCodeMsg.SUCCESS.code,
-            msg = ResultCodeMsg.SUCCESS.msg,
-            result = GetStoreResult(
-                totalCount = 100,
-                stores = listOf(
-                    StoreVo(
-                        storeKey = 0,
-                        status = "G",
-                        name = "hello",
-                        description = "hello description",
-                        shippingAndRefundPolicy = "",
-                        businessForDistanceSellingNumber = "",
-                        informationManagerName = "",
-                        informationManagerEmail = "",
-                        modDt = Instant.now(),
-                        regDt = Instant.now(),
-                    ),
-                    StoreVo(
-                        storeKey = 0,
-                        status = "G",
-                        name = "hello",
-                        description = "hello description",
-                        shippingAndRefundPolicy = "",
-                        businessForDistanceSellingNumber = "",
-                        informationManagerName = "",
-                        informationManagerEmail = "",
-                        modDt = Instant.now(),
-                        regDt = Instant.now(),
-                    )
-                )
-            )
-        )
+        return storeService.getStore(getStoreRequest)
     }
 
     @PostMapping("/update")
     @Throws(Exception::class)
     fun postStoreUpdate(@RequestBody postStoreUpdateRequest: PostStoreUpdateRequest): PostNullResultResponse {
-        return PostNullResultResponse(ResultCodeMsg.SUCCESS)
+        return storeService.postStoreUpdate(postStoreUpdateRequest)
     }
 
     @PostMapping("/delete")
     @Throws(Exception::class)
     fun postStoreDelete(@RequestBody postStoreDeleteRequest: PostStoreDeleteRequest): PostNullResultResponse {
-        return PostNullResultResponse(ResultCodeMsg.SUCCESS)
+        return storeService.postStoreDelete(postStoreDeleteRequest)
     }
 
 

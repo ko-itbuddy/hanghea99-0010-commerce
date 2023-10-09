@@ -9,8 +9,8 @@ import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.domain.*
 import com.hanghea99.commerce.database.entity.QStoreEntity
 import com.hanghea99.commerce.database.entity.StoreEntity
+import com.hanghea99.commerce.logger
 import com.querydsl.core.BooleanBuilder
-import com.querydsl.core.types.OrderSpecifier
 import org.springframework.stereotype.Service
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.RequestBody
@@ -22,6 +22,7 @@ class StoreService(
     var storeManager: StoreManager,
     var storeReader: StoreReader
 ) {
+    private val log = logger()
 
     var qStoreEntity: QStoreEntity = QStoreEntity("s1")
 
@@ -65,44 +66,40 @@ class StoreService(
     fun getStore(getStoreRequest: GetStoreRequest): GetStoreResponse {
 
         val booleanBuilder = BooleanBuilder()
-
         val typesValues = GetRequest.getTypesValues(getStoreRequest)
-
-
 
         for ((idx, type) in typesValues.types.withIndex()) {
             when (type) {
                 "NAME" -> {
-                    booleanBuilder.and(qStoreEntity.name.eq(typesValues.values.get(idx)))
+                    booleanBuilder.and(
+                        qStoreEntity.name.containsIgnoreCase(
+                            typesValues.values.get(
+                                idx
+                            )
+                        )
+                    )
                 }
             }
         }
-
-
-        val offset: Long =
-            if (getStoreRequest.page > 0) getStoreRequest.page * getStoreRequest.count else 0
-        val count: Long = getStoreRequest.count
-        val orders: MutableList<OrderSpecifier<*>> = when (getStoreRequest.sort) {
-            "LATEST" -> mutableListOf(qStoreEntity.createdAt.desc())
-            "NAME_ASC" -> mutableListOf(qStoreEntity.name.asc())
-            "NAME_DESC" -> mutableListOf(qStoreEntity.createdAt.desc())
-            else -> mutableListOf(qStoreEntity.createdAt.desc())
-        }
-
+        booleanBuilder.and(qStoreEntity.deletedAt.isNull)
 
         val result = storeReader.readAll(
             booleanBuilder,
-            offset,
-            count,
-            orders
+            offset = if (getStoreRequest.page > 0) getStoreRequest.page * getStoreRequest.count else 0,
+            count = getStoreRequest.count,
+            orders = when (getStoreRequest.sort) {
+                "LATEST" -> mutableListOf(qStoreEntity.createdAt.desc())
+                "NAME_ASC" -> mutableListOf(qStoreEntity.name.asc())
+                "NAME_DESC" -> mutableListOf(qStoreEntity.createdAt.desc())
+                else -> mutableListOf(qStoreEntity.createdAt.desc())
+            }
         )
-
 
         return GetStoreResponse(
             code = ResultCodeMsg.SUCCESS.code,
             msg = ResultCodeMsg.SUCCESS.msg,
             result = GetStoreResult(
-                totalCount = 100,
+                totalCount = storeReader.readAllCount(booleanBuilder),
                 stores = result.map { storeEntity ->
                     StoreVo(
                         storeKey = storeEntity.storeKey,
@@ -124,11 +121,46 @@ class StoreService(
 
     @Throws(Exception::class)
     fun postStoreUpdate(@RequestBody postStoreUpdateRequest: PostStoreUpdateRequest): PostNullResultResponse {
-        return PostNullResultResponse(ResultCodeMsg.SUCCESS)
+        val tempSellerId = "seller"
+
+        storeManager.update(
+            listOf(
+                StoreEntity(
+                    sellerId = tempSellerId,
+                    name = postStoreUpdateRequest.store.name,
+                    desc = postStoreUpdateRequest.store.description,
+                    businessForDistanceSellingNumber = postStoreUpdateRequest.store.businessForDistanceSellingNumber,
+                    email = postStoreUpdateRequest.store.informationManagerEmail,
+                    shippingAndRefundPolicy = postStoreUpdateRequest.store.shippingAndRefundPolicy,
+                    status = StoreEntity.STAUS_READEY
+                )
+            )
+        )
+
+        return PostNullResultResponse(
+            ResultCodeMsg.SUCCESS
+        )
     }
 
     @Throws(Exception::class)
     fun postStoreDelete(@RequestBody postStoreDeleteRequest: PostStoreDeleteRequest): PostNullResultResponse {
-        return PostNullResultResponse(ResultCodeMsg.SUCCESS)
+
+
+        // if auth 소유자 혹은, 매니저
+        val tempSellerId = "seller"
+
+        storeManager.update(
+            postStoreDeleteRequest.deleteKeys.map{deleteKey ->
+                StoreEntity(
+                    sellerId = tempSellerId,
+                    storeKey = deleteKey,
+                    deletedAt = Instant.now()
+                )
+            }
+        )
+
+        return PostNullResultResponse(
+            ResultCodeMsg.SUCCESS
+        )
     }
 }

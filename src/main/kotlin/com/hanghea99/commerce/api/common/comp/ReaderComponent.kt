@@ -8,5 +8,7 @@ abstract class ReaderComponent<EntityClass, EntityIdClass> {
     abstract fun read(id: EntityIdClass): EntityClass
     abstract fun read(where: BooleanBuilder): EntityClass
     abstract fun readAll(ids: List<EntityIdClass>): List<EntityClass>
+    abstract fun readAllCount(ids: List<EntityIdClass>): Long
     abstract fun readAll(where: BooleanBuilder, offset: Long, count: Long, orders: MutableList<OrderSpecifier<*>>): List<EntityClass>
+    abstract fun readAllCount(where: BooleanBuilder): Long
 }

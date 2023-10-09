@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 @ControllerAdvice
 class ControllerExceptionHandler {
 
-    @ExceptionHandler(MethodArgumentNotValidException::class)
-    protected fun handleMethodArgumentNotValidException(ex: MethodArgumentNotValidException?): ResponseEntity<ErrorResponse?>? {
+    @ExceptionHandler(Exception::class)
+    protected fun handleException(ex: Exception?): ResponseEntity<ErrorResponse?>? {
         ex?.printStackTrace()
         return null
     }

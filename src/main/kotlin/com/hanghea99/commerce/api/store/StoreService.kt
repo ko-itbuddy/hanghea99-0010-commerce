@@ -79,7 +79,8 @@ class StoreService(
         }
 
 
-        val offset: Long = getStoreRequest.page
+        val offset: Long =
+            if (getStoreRequest.page > 0) getStoreRequest.page * getStoreRequest.count else 0
         val count: Long = getStoreRequest.count
         val orders: MutableList<OrderSpecifier<*>> = when (getStoreRequest.sort) {
             "LATEST" -> mutableListOf(qStoreEntity.createdAt.desc())

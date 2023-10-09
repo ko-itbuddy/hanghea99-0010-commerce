@@ -29,26 +29,26 @@ open class StoreItemOptionEntity(
     )
     @NotNull
     @Column(name = "OPTION_KEY", nullable = false)
-    var optionKey: Long? = optionKey
+    open var optionKey: Long? = optionKey
 
     @NotNull
     @Column(name = "ITEM_KEY", nullable = false)
-    var itemKey: Long? = itemKey
+    open var itemKey: Long? = itemKey
 
 
     @Size(max = 255)
     @Column(name = "NAME")
-    var name: String? = name
+    open var name: String? = name
 
     @Column(name = "PRICE", precision = 20, scale = 2)
-    var price: BigDecimal? = price
+    open var price: BigDecimal? = price
 
     @Column(name = "INVENTORY")
-    var inventory: Long? = inventory
+    open var inventory: Long? = inventory
 
     @OneToMany(mappedBy = "storeItemOptionEntity")
-    var cartItemEntities: MutableSet<CartItemEntity> = cartItemEntities
+    open var cartItemEntities: MutableSet<CartItemEntity> = cartItemEntities
 
     @OneToMany(mappedBy = "storeItemoptionEntity")
-    var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
+    open var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
 }

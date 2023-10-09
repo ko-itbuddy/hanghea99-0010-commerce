@@ -29,24 +29,24 @@ open class DeliveryAddressEntity(
     )
     @NotNull
     @Column(name = "DELIVERY_ADDRESS_KEY", nullable = false)
-    var deliveryAddressKey: Long? = deliveryAddressKey
+    open var deliveryAddressKey: Long? = deliveryAddressKey
 
     @NotNull
     @Column(name = "USER_ID", nullable = false)
-    var userId: Long? = userId
+    open var userId: Long? = userId
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    var userEntity: UserEntity? = userEntity
+    open var userEntity: UserEntity? = userEntity
 
     @Size(max = 20)
     @Column(name = "NAME", length = 20)
-    var name: String? = name
+    open var name: String? = name
 
     
     @Column(name = "ADDRESS")
-    var address: String? = address
+    open var address: String? = address
 
     
     @Column(name = "DDRESS_DETAIL")

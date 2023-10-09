@@ -23,18 +23,18 @@ open class PaymentEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PAYMENT_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PAYMENT_KEY", nullable = false)
-    var paymentKey: Long? = paymentKey
+    open var paymentKey: Long? = paymentKey
 
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
-    var purchaseKey: Long? = purchaseKey
+    open var purchaseKey: Long? = purchaseKey
 
     @MapsId("purchaseKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY")
-    var purchaseEntity: PurchaseEntity? = purchaseEntity
+    open var purchaseEntity: PurchaseEntity? = purchaseEntity
 
     @Size(max = 20)
     @Column(name = "KIND", length = 20)
-    var kind: String? = kind
+    open var kind: String? = kind
 }

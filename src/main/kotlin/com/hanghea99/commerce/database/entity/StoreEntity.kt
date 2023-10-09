@@ -43,60 +43,60 @@ open class StoreEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "STORE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "STORE_KEY", nullable = false)
-    var storeKey: Long? = storeKey
+    open var storeKey: Long? = storeKey
 
     @Size(max = 30)
     @NotNull
     @Column(name = "SELLER_ID", nullable = false, length = 30)
-    var sellerId: String? = sellerId
+    open var sellerId: String? = sellerId
 
     @MapsId("sellerId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SELLER_ID", nullable = false)
-    var sellerEntity: SellerEntity? = sellerEntity
+    open var sellerEntity: SellerEntity? = sellerEntity
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    var status: String? = status
+    open var status: String? = status
 
     @Size(max = 255)
     @Column(name = "NAME")
-    var name: String? = name
+    open var name: String? = name
 
     
     @Column(name = "`DESC`")
-    var desc: String? = desc
+    open var desc: String? = desc
 
     
     @Column(name = "SHIPPING_AND_REFUND_POLICY")
-    var shippingAndRefundPolicy: String? = shippingAndRefundPolicy
+    open var shippingAndRefundPolicy: String? = shippingAndRefundPolicy
 
     @Size(max = 100)
     @Column(name = "BUSINESS_FOR_DISTANCE_SELLING_NUMBER", length = 100)
-    var businessForDistanceSellingNumber: String? = businessForDistanceSellingNumber
+    open var businessForDistanceSellingNumber: String? = businessForDistanceSellingNumber
 
     @Size(max = 20)
     @Column(name = "INFORMATION_MANAGER_NAME", length = 20)
-    var informationManagerName: String? = informationManagerName
+    open var informationManagerName: String? = informationManagerName
 
     @Size(max = 320)
     @Column(name = "EMAIL", length = 320)
-    var email: String? = email
+    open var email: String? = email
 
     @CreationTimestamp
     @Column(name = "CREATED_AT", updatable = false)
-    var createdAt: Instant? = createdAt
+    open var createdAt: Instant? = createdAt
 
     @UpdateTimestamp
     @Column(name = "UPDATED_AT")
-    var updatedAt: Instant? = updatedAt
+    open var updatedAt: Instant? = updatedAt
 
     @Column(name = "DELETED_AT")
-    var deletedAt: Instant? = deletedAt
+    open var deletedAt: Instant? = deletedAt
 
     @Column(name = "BLOCKED_AT")
-    var blockedAt: Instant? = blockedAt
+    open var blockedAt: Instant? = blockedAt
 
     @OneToMany(mappedBy = "storeKey")
-    var storeItemEntities: MutableSet<StoreItemEntity> = storeItemEntities
+    open var storeItemEntities: MutableSet<StoreItemEntity> = storeItemEntities
 }

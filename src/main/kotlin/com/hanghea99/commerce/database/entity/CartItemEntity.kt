@@ -23,23 +23,23 @@ open class CartItemEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "CART_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "CART_PRODUCT_KEY", nullable = false)
-    var cartProductKey: Long? = cartProductKey
+    open var cartProductKey: Long? = cartProductKey
 
     @NotNull
     @Column(name = "CART_KEY", nullable = false)
-    var cartKey: Long? = cartKey
+    open var cartKey: Long? = cartKey
 
     @NotNull
     @Column(name = "OPTION_KEY", nullable = false)
-    var optionKey: Long? = optionKey
+    open var optionKey: Long? = optionKey
 
     @MapsId("cartKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CART_KEY", nullable = false, referencedColumnName = "CART_KEY")
-    var cartEntity: CartEntity? = cartEntity
+    open var cartEntity: CartEntity? = cartEntity
 
     @MapsId("optionKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY")
-    var storeItemOptionEntity: StoreItemOptionEntity? = storeItemOptionEntity
+    open var storeItemOptionEntity: StoreItemOptionEntity? = storeItemOptionEntity
 }

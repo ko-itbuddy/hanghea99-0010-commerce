@@ -23,23 +23,23 @@ open class FavoriteItemEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "FAVORITE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "FAVORITE_ITEM_KEY", nullable = false)
-    var favoriteItemKey: Long? = favoriteItemKey
+    open var favoriteItemKey: Long? = favoriteItemKey
 
     @NotNull
     @Column(name = "ITEM_KEY", nullable = false)
-    var itemKey: Long? = itemKey
+    open var itemKey: Long? = itemKey
 
     @NotNull
     @Column(name = "FAVORITE_KEY", nullable = false)
-    var favoriteKey: Long? = favoriteKey
+    open var favoriteKey: Long? = favoriteKey
 
     @MapsId("itemKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ITEM_KEY", nullable = false, referencedColumnName = "ITEM_KEY")
-    var storeItemEntity: StoreItemEntity? = storeItemEntity
+    open var storeItemEntity: StoreItemEntity? = storeItemEntity
 
     @MapsId("favoriteKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "FAVORITE_KEY", nullable = false, referencedColumnName = "FAVORITE_KEY")
-    var favoriteEntity: FavoriteEntity? = favoriteEntity
+    open var favoriteEntity: FavoriteEntity? = favoriteEntity
 }

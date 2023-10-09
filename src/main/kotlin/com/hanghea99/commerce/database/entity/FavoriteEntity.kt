@@ -22,17 +22,17 @@ open class FavoriteEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "FAVORITE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "FAVORITE_KEY", nullable = false)
-    var favoriteKey: Long? = favoriteKey
+    open var favoriteKey: Long? = favoriteKey
 
     @NotNull
     @Column(name = "USER_ID", nullable = false)
-    var userId: Long? = userId
+    open var userId: Long? = userId
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    var userEntity: UserEntity? = userEntity
+    open var userEntity: UserEntity? = userEntity
 
     @OneToMany(mappedBy = "favoriteEntity")
-    var favoriteItemEntities: MutableSet<FavoriteItemEntity> = favoriteItemEntities
+    open var favoriteItemEntities: MutableSet<FavoriteItemEntity> = favoriteItemEntities
 }

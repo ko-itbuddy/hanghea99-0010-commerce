@@ -29,23 +29,23 @@ open class ManagerEntity(
     @Id
     @Size(max = 20)
     @Column(name = "MANAGER_ID", nullable = false, length = 20)
-    var managerId: String? = managerId
+    open var managerId: String? = managerId
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    var status: String? = status
+    open var status: String? = status
 
     @Size(max = 255)
     @Column(name = "PASSWORD")
-    var password: String? = password
+    open var password: String? = password
 
     @Size(max = 20)
     @Column(name = "NAME", length = 20)
-    var name: String? = name
+    open var name: String? = name
 
     @Size(max = 100)
     @Column(name = "SSN", length = 100)
-    var ssn: String? = ssn
+    open var ssn: String? = ssn
 
     @Size(max = 15)
     @Column(name = "TEL_NUMBER", length = 15)

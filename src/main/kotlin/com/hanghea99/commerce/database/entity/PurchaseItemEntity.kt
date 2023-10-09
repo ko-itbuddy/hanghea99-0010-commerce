@@ -26,35 +26,35 @@ open class PurchaseItemEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PURCHASE_ITEM_KEY", nullable = false)
-    var purchaseItemKey: Long? = purchaseItemKey
+    open var purchaseItemKey: Long? = purchaseItemKey
 
     @NotNull
     @Column(name = "REVIEW_ID", nullable = false)
-    var reviewId: Long? = reviewId
+    open var reviewId: Long? = reviewId
 
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
-    var purchaseKey: Long? = purchaseKey
+    open var purchaseKey: Long? = purchaseKey
 
     @NotNull
     @Column(name = "OPTION_KEY", nullable = false)
-    var optionKey: Long? = optionKey
+    open var optionKey: Long? = optionKey
 
     @MapsId("reviewId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "REVIEW_ID", nullable = false)
-    var reviewEntity: ReviewEntity? = reviewEntity
+    open var reviewEntity: ReviewEntity? = reviewEntity
 
     @MapsId("purchaseKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY")
-    var purchaseEntity: PurchaseEntity? = purchaseEntity
+    open var purchaseEntity: PurchaseEntity? = purchaseEntity
 
     @MapsId("optionKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY")
-    var storeItemoptionEntity: StoreItemOptionEntity? = storeItemoptionEntity
+    open var storeItemoptionEntity: StoreItemOptionEntity? = storeItemoptionEntity
 
     @OneToMany(mappedBy = "purchaseItemEntity")
-    var deliveries: MutableSet<DeliveryEntity> = deliveries
+    open var deliveries: MutableSet<DeliveryEntity> = deliveries
 }

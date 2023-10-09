@@ -20,15 +20,15 @@ open class ReviewEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "REVIEW_SEQ_GENERATOR")
     @Column(name = "REVIEW_ID", nullable = false)
-    var id: Long? = id
+    open var id: Long? = id
 
     @Column(name = "REVIEW_POINT")
-    var reviewPoint: Long? = reviewPoint
+    open var reviewPoint: Long? = reviewPoint
 
 
     @Column(name = "CONTENT")
-    var content: String? = content
+    open var content: String? = content
 
     @OneToMany(mappedBy = "reviewEntity")
-    var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
+    open var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
 }

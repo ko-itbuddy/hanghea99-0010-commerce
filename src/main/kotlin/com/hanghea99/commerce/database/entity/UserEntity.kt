@@ -26,44 +26,44 @@ open class UserEntity(
 
     @Id
     @Column(name = "USER_ID", nullable = false)
-    var id: Long? = id
+    open var id: Long? = id
 
     @Column(name = "EMAIL")
-    var email: Long? = email
+    open var email: Long? = email
 
     @Column(name = "PASSWORD")
-    var password: Long? = password
+    open var password: Long? = password
 
     @Column(name = "ADDRESS")
-    var address: String? = address
+    open var address: String? = address
 
     @Size(max = 20)
     @Column(name = "NICKNAME", length = 20)
-    var nickname: String? = nickname
+    open var nickname: String? = nickname
 
     @CreationTimestamp
     @Column(name = "CREATED_AT", updatable = false)
-    var createdAt: Instant? = createdAt
+    open var createdAt: Instant? = createdAt
 
     @UpdateTimestamp
     @Column(name = "UPDATED_AT")
-    var updatedAt: Instant? = updatedAt
+    open var updatedAt: Instant? = updatedAt
 
     @Column(name = "DELETED_AT")
-    var deletedAt: Instant? = deletedAt
+    open var deletedAt: Instant? = deletedAt
 
     @OneToMany(mappedBy = "userEntity")
-    var cartEntities: MutableSet<CartEntity> = cartEntities
+    open var cartEntities: MutableSet<CartEntity> = cartEntities
 
     @OneToMany(mappedBy = "userEntity")
-    var deliveryAddressEntities: MutableSet<DeliveryAddressEntity> = deliveryAddressEntities
+    open var deliveryAddressEntities: MutableSet<DeliveryAddressEntity> = deliveryAddressEntities
 
     @OneToMany(mappedBy = "userEntity")
-    var favoriteEntities: MutableSet<FavoriteEntity> = favoriteEntities
+    open var favoriteEntities: MutableSet<FavoriteEntity> = favoriteEntities
 
     @OneToMany(mappedBy = "userEntity")
-    var purchaseEntities: MutableSet<PurchaseEntity> = purchaseEntities
+    open var purchaseEntities: MutableSet<PurchaseEntity> = purchaseEntities
 
     @Column(name = "AGREE_AT")
-    var agreeAt: Instant? = agreeAt
+    open var agreeAt: Instant? = agreeAt
 }

@@ -30,33 +30,33 @@ open class PurchaseEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
-    var purchaseKey: Long? = purchaseKey
+    open var purchaseKey: Long? = purchaseKey
 
     @NotNull
     @Column(name = "USER_ID", nullable = false)
-    var userId: Long? = userId
+    open var userId: Long? = userId
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    var userEntity: UserEntity? = userEntity
+    open var userEntity: UserEntity? = userEntity
 
     @Column(name = "TOTAL_PRICE", precision = 20, scale = 2)
-    var totalPrice: BigDecimal? = totalPrice
+    open var totalPrice: BigDecimal? = totalPrice
 
     @Column(name = "PURCHASE_DATE")
-    var purchaseDate: Instant? = purchaseDate
+    open var purchaseDate: Instant? = purchaseDate
 
     @Column(name = "CANCLE_DATE")
-    var cancleDate: Instant? = cancleDate
+    open var cancleDate: Instant? = cancleDate
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    var status: String? = status
+    open var status: String? = status
 
     @OneToMany(mappedBy = "purchaseEntity")
-    var paymentEntities: MutableSet<PaymentEntity> = paymentEntities
+    open var paymentEntities: MutableSet<PaymentEntity> = paymentEntities
 
     @OneToMany(mappedBy = "purchaseEntity")
-    var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
+    open var purchaseItemEntities: MutableSet<PurchaseItemEntity> = purchaseItemEntities
 }

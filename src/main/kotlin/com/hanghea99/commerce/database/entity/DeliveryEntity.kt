@@ -24,11 +24,11 @@ open class DeliveryEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "DELIVERY_SEQ_GENERATOR")
     @NotNull
     @Column(name = "DELIVERY_KEY", nullable = false)
-    var deliveryKey: Long? = deliveryKey
+    open var deliveryKey: Long? = deliveryKey
 
     @NotNull
     @Column(name = "PURCHASE_ITEM_KEY", nullable = false)
-    var purchaseItemKey: Long? = purchaseItemKey
+    open var purchaseItemKey: Long? = purchaseItemKey
 
     @MapsId("purchaseItemKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -37,13 +37,13 @@ open class DeliveryEntity(
         nullable = false,
         referencedColumnName = "PURCHASE_ITEM_KEY"
     )
-    var purchaseItemEntity: PurchaseItemEntity? = purchaseItemEntity
+    open var purchaseItemEntity: PurchaseItemEntity? = purchaseItemEntity
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    var status: String? = status
+    open var status: String? = status
 
     
     @Column(name = "SHIPPING_NUMBER")
-    var shippingNumber: String? = shippingNumber
+    open var shippingNumber: String? = shippingNumber
 }

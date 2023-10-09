@@ -22,17 +22,17 @@ open class CartEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "CART_SEQ_GENERATOR")
     @NotNull
     @Column(name = "CART_KEY", nullable = false)
-    var cartKey: Long? = cartKey
+    open var cartKey: Long? = cartKey
 
     @NotNull
     @Column(name = "USER_ID", nullable = false)
-    var userId: Long? = userId
+    open var userId: Long? = userId
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    var userEntity: UserEntity? = userEntity
+    open var userEntity: UserEntity? = userEntity
 
     @OneToMany(mappedBy = "cartEntity")
-    var cartItemEntities: MutableSet<CartItemEntity> = cartItemEntities
+    open var cartItemEntities: MutableSet<CartItemEntity> = cartItemEntities
 }

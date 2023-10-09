@@ -27,32 +27,32 @@ open class StoreItemEntity(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "STORE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "ITEM_KEY", nullable = false)
-    var itemKey: Long? = itemKey
+    open var itemKey: Long? = itemKey
 
     @NotNull
     @Column(name = "STORE_KEY", nullable = false)
-    var storeKey: Long? = storeKey
+    open var storeKey: Long? = storeKey
 
     @Size(max = 20)
     @Column(name = "SELLER_ID", nullable = false, length = 20)
-    var sellerId: String? = sellerId
+    open var sellerId: String? = sellerId
 
     @Size(max = 30)
     @Column(name = "ITEM_ID", length = 30)
-    var itemId: String? = itemId
+    open var itemId: String? = itemId
 
     @Size(max = 255)
     @Column(name = "NAME")
-    var name: String? = name
+    open var name: String? = name
 
     
     @Column(name = "`DESC`")
-    var desc: String? = desc
+    open var desc: String? = desc
 
 
     @OneToMany(mappedBy = "storeItemEntity")
-    var favoriteItemEntities: MutableSet<FavoriteItemEntity> = favoriteItemEntities
+    open var favoriteItemEntities: MutableSet<FavoriteItemEntity> = favoriteItemEntities
 
     @OneToMany(mappedBy = "itemKey")
-    var storeItemOptionEntities: MutableSet<StoreItemOptionEntity> = storeItemOptionEntities
+    open var storeItemOptionEntities: MutableSet<StoreItemOptionEntity> = storeItemOptionEntities
 }

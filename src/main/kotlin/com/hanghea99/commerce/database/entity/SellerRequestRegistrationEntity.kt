@@ -26,19 +26,19 @@ open class SellerRequestRegistrationEntity(
     )
     @NotNull
     @Column(name = "SELLER_REQUEST_REGISTRATION_KEY", nullable = false)
-    var sellerRequestRegistrationKey: Long? = sellerRequestRegistrationKey
+    open var sellerRequestRegistrationKey: Long? = sellerRequestRegistrationKey
 
     @Size(max = 20)
     @NotNull
     @Column(name = "SELLER_ID", nullable = false, length = 20)
-    var sellerId: String? = sellerId
+    open var sellerId: String? = sellerId
 
     @MapsId("sellerId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SELLER_ID", nullable = false)
-    var sellerEntity: SellerEntity? = sellerEntity
+    open var sellerEntity: SellerEntity? = sellerEntity
 
     @Size(max = 10)
     @Column(name = "STATUS", length = 10)
-    var status: String? = status
+    open var status: String? = status
 }

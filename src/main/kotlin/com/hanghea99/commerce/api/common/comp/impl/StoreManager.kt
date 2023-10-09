@@ -10,15 +10,15 @@ import org.springframework.validation.annotation.Validated
 @Validated
 class StoreManager(var storeRepository: StoreRepository) : ManagerComponent<StoreEntity, Long>() {
     override fun update(entities: List<StoreEntity>): Long {
-        TODO("Not yet implemented")
+        return storeRepository.saveAllAndFlush(entities).count().toLong()
     }
 
-    override fun delete(entityIds: List<Long>): Long {
-        TODO("Not yet implemented")
+    override fun delete(entityIds: List<Long>) {
+        storeRepository.deleteAllById(entityIds)
     }
 
     override fun create(entities: List<StoreEntity>): List<StoreEntity> {
-        TODO("Not yet implemented")
+        return storeRepository.saveAllAndFlush(entities)
     }
 
 }

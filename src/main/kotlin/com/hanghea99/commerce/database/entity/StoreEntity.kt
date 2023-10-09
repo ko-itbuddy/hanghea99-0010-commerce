@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Size
 import java.time.Instant
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "STORE_SEQ_GENERATOR",
-    sequenceName = "STORE_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -16,7 +16,7 @@ import java.time.Instant
 open class StoreEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STORE_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "STORE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "STORE_KEY", nullable = false)
     open var storeKey: Long? = null
@@ -39,11 +39,11 @@ open class StoreEntity {
     @Column(name = "NAME")
     open var name: String? = null
 
-    @Lob
+    
     @Column(name = "`DESC`")
     open var desc: String? = null
 
-    @Lob
+    
     @Column(name = "SHIPPING_AND_REFUND_POLICY")
     open var shippingAndRefundPolicy: String? = null
 

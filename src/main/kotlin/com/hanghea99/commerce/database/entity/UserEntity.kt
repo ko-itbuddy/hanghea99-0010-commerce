@@ -17,7 +17,6 @@ open class UserEntity {
     @Column(name = "PASSWORD")
     open var password: Long? = null
 
-    @Lob
     @Column(name = "ADDRESS")
     open var address: String? = null
 

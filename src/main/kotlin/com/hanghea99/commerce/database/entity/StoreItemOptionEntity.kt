@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Size
 import java.math.BigDecimal
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "STORE_ITEM_OPTION_SEQ_GENERATOR",
-    sequenceName = "STORE_ITEM_OPTION_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -17,7 +17,7 @@ open class StoreItemOptionEntity {
 
     @Id
     @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
+        strategy = GenerationType.TABLE,
         generator = "STORE_ITEM_OPTION_SEQ_GENERATOR"
     )
     @NotNull

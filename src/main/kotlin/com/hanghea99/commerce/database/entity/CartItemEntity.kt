@@ -4,9 +4,9 @@ import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "CART_ITEM_SEQ_GENERATOR",
-    sequenceName = "CART_ITEM_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull
 open class CartItemEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_ITEM_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "CART_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "CART_PRODUCT_KEY", nullable = false)
     open var cartProductKey: Long? = null

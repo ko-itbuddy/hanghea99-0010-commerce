@@ -7,9 +7,9 @@ import java.math.BigDecimal
 import java.time.Instant
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "PURCHASE_SEQ_GENERATOR",
-    sequenceName = "PURCHASE_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -17,7 +17,7 @@ import java.time.Instant
 open class PurchaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PURCHASE_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PURCHASE_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PURCHASE_KEY", nullable = false)
     open var purchaseKey: Long? = null

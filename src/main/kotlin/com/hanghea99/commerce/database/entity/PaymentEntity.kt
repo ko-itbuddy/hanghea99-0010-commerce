@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "PAYMENT_SEQ_GENERATOR",
-    sequenceName = "PAYMENT_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size
 open class PaymentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PAYMENT_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PAYMENT_SEQ_GENERATOR")
     @NotNull
     @Column(name = "PAYMENT_KEY", nullable = false)
     open var paymentKey: Long? = null

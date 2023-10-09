@@ -6,10 +6,16 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import javax.sql.DataSource;
 import net.ttddyy.dsproxy.listener.QueryExecutionListener;
+import net.ttddyy.dsproxy.listener.logging.DefaultQueryLogEntryCreator;
+import net.ttddyy.dsproxy.listener.logging.QueryLogEntryCreator;
+import net.ttddyy.dsproxy.listener.logging.SystemOutQueryLoggingListener;
 import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder;
 import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.engine.jdbc.internal.FormatStyle;
+import org.hibernate.engine.jdbc.internal.Formatter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -64,25 +70,41 @@ public class DataSourceConfig {
         return new ReplicationRoutingDataSource(masterDataSource, slaveDataSource);
     }
 
+    private static class PrettyQueryEntryCreator extends DefaultQueryLogEntryCreator {
+        private Formatter formatter = FormatStyle.HIGHLIGHT.getFormatter();
+
+        @Override
+        protected String formatQuery(String query) {
+            return this.formatter.format(query);
+        }
+    }
 
     @Profile("local|dev|stg")
     @Bean(name = "routingDataSource")
     public DataSource otherRoutingDataSource(
         @Qualifier("masterDataSource") DataSource masterDataSource,
         @Qualifier("slaveDataSource") DataSource slaveDataSource) {
-        QueryExecutionListener queryExecutionListener = new CustomQueryExecutionListener();
+
+        PrettyQueryEntryCreator creator = new PrettyQueryEntryCreator();
+        creator.setMultiline(true);
+        SystemOutQueryLoggingListener listener = new SystemOutQueryLoggingListener();
+        listener.setQueryLogEntryCreator(creator);
         return new ReplicationRoutingDataSource(
             ProxyDataSourceBuilder
                 .create(masterDataSource)
                 .name("masterDataSource")
-                .listener(queryExecutionListener)
-                .asJson()
+                .countQuery()
+                .multiline()
+                .listener(listener)
+                .logSlowQueryToSysOut(1, TimeUnit.MINUTES)
                 .build(),
             ProxyDataSourceBuilder
                 .create(slaveDataSource)
                 .name("slaveDataSource")
-                .listener(queryExecutionListener)
-                .asJson()
+                .countQuery()
+                .multiline()
+                .listener(listener)
+                .logSlowQueryToSysOut(1, TimeUnit.MINUTES)
                 .build()
         );
     }
@@ -133,9 +155,4 @@ public class DataSourceConfig {
         return transactionManager;
     }
 
-
-    @Bean("jpaQueryFactory")
-    public JPAQueryFactory JPAQueryFactory(@Qualifier("entityManager") EntityManager entityManager) {
-        return new JPAQueryFactory(entityManager);
-    }
 }

@@ -5,16 +5,16 @@ import jakarta.validation.constraints.NotNull
 
 @Entity
 @Table(name = "CART")
-@SequenceGenerator(
+@TableGenerator(
     name = "CART_SEQ_GENERATOR",
-    sequenceName = "CART_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
 open class CartEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "CART_SEQ_GENERATOR")
     @NotNull
     @Column(name = "CART_KEY", nullable = false)
     open var cartKey: Long? = null

@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "STORE_ITEM_SEQ_GENERATOR",
-    sequenceName = "STORE_ITEM_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size
 open class StoreItemEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STORE_ITEM_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "STORE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "ITEM_KEY", nullable = false)
     open var itemKey: Long? = null
@@ -36,7 +36,7 @@ open class StoreItemEntity {
     @Column(name = "NAME")
     open var name: String? = null
 
-    @Lob
+    
     @Column(name = "`DESC`")
     open var desc: String? = null
 

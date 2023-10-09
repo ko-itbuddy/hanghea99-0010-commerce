@@ -85,6 +85,4 @@ open class SellerEntity {
     @OneToMany(mappedBy = "sellerEntity")
     open var stores: MutableSet<StoreEntity> = mutableSetOf()
 
-    @OneToMany(mappedBy = "seller")
-    open var storeItemEntities: MutableSet<StoreItemEntity> = mutableSetOf()
 }

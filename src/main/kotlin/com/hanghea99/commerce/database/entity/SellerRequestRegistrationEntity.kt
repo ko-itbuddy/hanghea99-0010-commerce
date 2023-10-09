@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "SELLER_REQUEST_REGISTRATION_SEQ_GENERATOR",
-    sequenceName = "SELLER_REQUEST_REGISTRATION_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size
 open class SellerRequestRegistrationEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SELLER_REQUEST_REGISTRATION")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "SELLER_REQUEST_REGISTRATION_SEQ_GENERATOR")
     @NotNull
     @Column(name = "SELLER_REQUEST_REGISTRATION_KEY", nullable = false)
     open var sellerRequestRegistrationKey: Long? = null

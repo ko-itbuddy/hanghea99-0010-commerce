@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "DELIVERY_ADDRESS_SEQ_GENERATOR",
-    sequenceName = "DELIVERY_ADDRESS_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -16,7 +16,7 @@ open class DeliveryAddressEntity {
 
     @Id
     @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
+        strategy = GenerationType.TABLE,
         generator = "DELIVERY_ADDRESS_SEQ_GENERATOR"
     )
     @NotNull
@@ -36,11 +36,11 @@ open class DeliveryAddressEntity {
     @Column(name = "NAME", length = 20)
     open var name: String? = null
 
-    @Lob
+    
     @Column(name = "ADDRESS")
     open var address: String? = null
 
-    @Lob
+    
     @Column(name = "DDRESS_DETAIL")
     open var ddressDetail: String? = null
 

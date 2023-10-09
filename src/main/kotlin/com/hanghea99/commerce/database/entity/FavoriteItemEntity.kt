@@ -4,9 +4,9 @@ import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 
 @Entity
-@SequenceGenerator(
+@TableGenerator(
     name = "FAVORITE_ITEM_SEQ_GENERATOR",
-    sequenceName = "FAVORITE_ITEM_SEQ",
+    table = "__SEQ",
     initialValue = 1,
     allocationSize = 50,
 )
@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull
 open class FavoriteItemEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FAVORITE_ITEM")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "FAVORITE_ITEM_SEQ_GENERATOR")
     @NotNull
     @Column(name = "FAVORITE_ITEM_KEY", nullable = false)
     open var favoriteItemKey: Long? = null

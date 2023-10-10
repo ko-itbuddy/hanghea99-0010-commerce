@@ -98,7 +98,7 @@ class StoreService(
         return GetStoreResponse(
             code = ResultCodeMsg.SUCCESS.code,
             msg = ResultCodeMsg.SUCCESS.msg,
-            result = GetStoreResult(
+            result = GetStoreVo(
                 totalCount = storeReader.readAllCount(booleanBuilder),
                 stores = result.map { storeEntity ->
                     StoreVo(

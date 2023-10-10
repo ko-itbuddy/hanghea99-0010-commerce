@@ -75,7 +75,7 @@ class StoreEntityServiceTest {
             GetStoreResponse(
                 code = ResultCodeMsg.SUCCESS.code,
                 msg = ResultCodeMsg.SUCCESS.msg,
-                result = GetStoreResult(
+                result = GetStoreVo(
                     totalCount = 100,
                     stores = listOf(
                         StoreVo(

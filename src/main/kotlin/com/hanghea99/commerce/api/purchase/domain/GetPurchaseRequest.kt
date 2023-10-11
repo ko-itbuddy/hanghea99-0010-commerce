@@ -18,7 +18,7 @@ data class GetPurchaseRequest (
     @PositiveOrZero
     override val count: Long = 10,
 
-    @Pattern(regexp = "LATEST|NAME_ASC|NAME_DESC^$")
+    @Pattern(regexp = "LATEST|^$")
     override val sort: String = "LATEST",
 
 ):GetRequest(types, values, page, count, sort)

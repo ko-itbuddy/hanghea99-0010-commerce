@@ -45,8 +45,8 @@ dependencies {
 
 	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
 	implementation("com.querydsl:querydsl-core:5.0.0")
-	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
-	kapt("com.querydsl:querydsl-kotlin-codegen:5.0.0")
+//	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+//	kapt("com.querydsl:querydsl-kotlin-codegen:5.0.0")
 
 
 	implementation("net.ttddyy:datasource-proxy:1.9")

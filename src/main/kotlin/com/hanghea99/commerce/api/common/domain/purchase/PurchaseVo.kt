@@ -6,8 +6,8 @@ import java.time.Instant
 data class PurchaseVo (
     var purchaseKey: Long? = null,
     var userId: Long? = null,
-    var totalPrice: BigDecimal,
-    var purchaseDate: Instant,
-    var cancleDate: Instant,
-    var status: String,
+    var totalPrice: BigDecimal? =null,
+    var purchaseDate: Instant? = null,
+    var cancleDate: Instant? = null,
+    var status: String? = null,
 )

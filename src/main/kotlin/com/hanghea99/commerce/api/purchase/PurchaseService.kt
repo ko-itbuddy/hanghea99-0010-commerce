@@ -6,6 +6,7 @@ import com.hanghea99.commerce.api.common.comp.impl.PurchaseReader
 import com.hanghea99.commerce.api.common.domain.purchase.PurchaseVo
 import com.hanghea99.commerce.api.purchase.domain.*
 import com.hanghea99.commerce.database.entity.PurchaseEntity
+import com.hanghea99.commerce.database.entity.QPurchaseEntity
 import com.hanghea99.commerce.logger
 import com.querydsl.core.BooleanBuilder
 import org.springframework.stereotype.Service
@@ -25,8 +26,6 @@ class PurchaseService(
     @Throws(Exception::class)
     fun getPurchase(getPurchaseRequest: GetPurchaseRequest): GetPurchaseResponse{
         val booleanBuilder = BooleanBuilder()
-
-        booleanBuilder.and(qPurchaseEntity.deletedAt.isNull)
 
         val result = purchaseReader.readAll(
             booleanBuilder,
@@ -57,13 +56,14 @@ class PurchaseService(
         )
     }
 
-    @Throws(Exception::class)
-    fun getPurchaseDetail(getPurchaseDetailRequest: GetPurchaseDetailRequest) : GetPurchaseDetailResponse {
-        return GetPurchaseDetailResponse(
-            code = ResultCodeMsg.SUCCESS,
-            msg = ResultCodeMsg.SUCCESS.msg,
-            result = null,
-            )
-        )
-    }
+//    @Throws(Exception::class)
+//    fun getPurchaseDetail(getPurchaseDetailRequest: GetPurchaseDetailRequest) : GetPurchaseDetailResponse {
+//        return GetPurchaseDetailResponse(
+//            code = ResultCodeMsg.SUCCESS.code,
+//            msg = ResultCodeMsg.SUCCESS.msg,
+//            result = GetPurchaseVo(
+//                purchase =
+//            )
+//            )
+//    }
 }

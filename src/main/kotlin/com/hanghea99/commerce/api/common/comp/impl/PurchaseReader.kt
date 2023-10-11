@@ -2,6 +2,7 @@ package com.hanghea99.commerce.api.common.comp.impl
 
 import com.hanghea99.commerce.api.common.comp.ReaderComponent
 import com.hanghea99.commerce.database.entity.PurchaseEntity
+import com.hanghea99.commerce.database.entity.QPurchaseEntity
 
 import com.hanghea99.commerce.database.repository.PurchaseRepository
 import com.querydsl.core.BooleanBuilder
@@ -17,6 +18,8 @@ class PurchaseReader (
 ) : ReaderComponent<PurchaseEntity, Long>(
     ) {
     private val log = LoggerFactory.getLogger("PurchaseReader")
+
+    val qPurchaseEntity: QPurchaseEntity = QPurchaseEntity("s1")
 
     override fun read(id: Long): PurchaseEntity {
         TODO("Not yet implemented")
@@ -36,7 +39,13 @@ class PurchaseReader (
         count: Long,
         orders: MutableList<OrderSpecifier<*>>
     ): List<PurchaseEntity> {
-        TODO("Not yet implemented")
+        val orders: MutableList<OrderSpecifier<*>> = mutableListOf()
+        return jpaQueryFactory.selectFrom(qPurchaseEntity)
+            .where(where)
+            .orderBy(*orders.toTypedArray())
+            .offset(offset)
+            .limit(count)
+            .fetch()
     }
 
     override fun readAllCount(ids: List<Long>): Long {

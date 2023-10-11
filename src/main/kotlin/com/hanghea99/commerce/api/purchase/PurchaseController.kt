@@ -1,20 +1,13 @@
 package com.hanghea99.commerce.api.purchase
 
-import com.hanghea99.commerce.api.purchase.domain.GetPurchaseDetailRequest
-import com.hanghea99.commerce.api.purchase.domain.GetPurchaseRequest
-import com.hanghea99.commerce.api.purchase.domain.GetPurchaseResponse
+import com.hanghea99.commerce.api.purchase.domain.*
 import com.hanghea99.commerce.logger
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/purchase")
 class PurchaseController(val purchaseService: PurchaseService) {
     private val log = logger()
-
 
     /**
      * API명 : PURCHASE_004
@@ -34,9 +27,9 @@ class PurchaseController(val purchaseService: PurchaseService) {
      * @param GetPurchaseDetailRequest
      * @return GetPurchaseDetailResponse
      */
-    @GetMapping("/purchase-id")
-    @Throws(Exception::class)
-    fun getPurchaseDetail(getPurchaseDetailRequest: GetPurchaseDetailRequest) : GetPurchaseResponse {
-        return purchaseService.getPurchaseDetail(getPurchaseDetailRequest)
-    }
+//    @GetMapping("/purchase-id")
+//    @Throws(Exception::class)
+//    fun getPurchaseDetail(getPurchaseDetailRequest: GetPurchaseDetailRequest) : GetPurchaseDetailResponse {
+//        return purchaseService.getPurchaseDetail(getPurchaseDetailRequest)
+//    }
 }

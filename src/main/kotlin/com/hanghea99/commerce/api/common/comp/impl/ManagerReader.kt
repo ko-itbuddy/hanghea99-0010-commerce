@@ -2,6 +2,7 @@ package com.hanghea99.commerce.api.common.comp.impl
 
 import com.hanghea99.commerce.api.common.comp.ReaderComponent
 import com.hanghea99.commerce.database.entity.ManagerEntity
+import com.hanghea99.commerce.database.entity.QManagerEntity
 import com.hanghea99.commerce.database.repository.ManagerRepository
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.OrderSpecifier

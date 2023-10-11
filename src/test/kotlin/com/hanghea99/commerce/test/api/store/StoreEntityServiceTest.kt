@@ -7,6 +7,7 @@ import com.hanghea99.commerce.api.common.domain.PostNullResultResponse
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.StoreService
 import com.hanghea99.commerce.api.store.domain.*
+import com.hanghea99.commerce.api.store.domain.result.GetStoreResult
 import io.mockk.every
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
@@ -75,7 +76,7 @@ class StoreEntityServiceTest {
             GetStoreResponse(
                 code = ResultCodeMsg.SUCCESS.code,
                 msg = ResultCodeMsg.SUCCESS.msg,
-                result = GetStoreVo(
+                result = GetStoreResult(
                     totalCount = 100,
                     stores = listOf(
                         StoreVo(

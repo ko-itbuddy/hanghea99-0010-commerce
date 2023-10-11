@@ -7,6 +7,7 @@ import com.hanghea99.commerce.api.common.domain.GetRequest
 import com.hanghea99.commerce.api.common.domain.PostNullResultResponse
 import com.hanghea99.commerce.api.common.domain.store.StoreVo
 import com.hanghea99.commerce.api.store.domain.*
+import com.hanghea99.commerce.api.store.domain.result.GetStoreResult
 import com.hanghea99.commerce.database.entity.QStoreEntity
 import com.hanghea99.commerce.database.entity.StoreEntity
 import com.hanghea99.commerce.logger
@@ -98,7 +99,7 @@ class StoreService(
         return GetStoreResponse(
             code = ResultCodeMsg.SUCCESS.code,
             msg = ResultCodeMsg.SUCCESS.msg,
-            result = GetStoreVo(
+            result = GetStoreResult(
                 totalCount = storeReader.readAllCount(booleanBuilder),
                 stores = result.map { storeEntity ->
                     StoreVo(

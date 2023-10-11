@@ -35,11 +35,11 @@ open class FavoriteItemEntity(
 
     @MapsId("itemKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ITEM_KEY", nullable = false, referencedColumnName = "ITEM_KEY")
+    @JoinColumn(name = "ITEM_KEY", nullable = false, referencedColumnName = "ITEM_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var storeItemEntity: StoreItemEntity? = storeItemEntity
 
     @MapsId("favoriteKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FAVORITE_KEY", nullable = false, referencedColumnName = "FAVORITE_KEY")
+    @JoinColumn(name = "FAVORITE_KEY", nullable = false, referencedColumnName = "FAVORITE_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var favoriteEntity: FavoriteEntity? = favoriteEntity
 }

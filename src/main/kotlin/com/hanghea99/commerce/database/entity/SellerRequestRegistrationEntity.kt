@@ -35,7 +35,7 @@ open class SellerRequestRegistrationEntity(
 
     @MapsId("sellerId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "SELLER_ID", nullable = false)
+    @JoinColumn(name = "SELLER_ID", nullable = false, foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var sellerEntity: SellerEntity? = sellerEntity
 
     @Size(max = 10)

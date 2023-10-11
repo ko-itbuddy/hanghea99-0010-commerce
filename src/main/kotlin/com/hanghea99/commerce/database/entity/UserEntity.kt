@@ -7,7 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
 
 @Entity
-@Table(name = "USER")
+@Table(name = "`USER`")
 open class UserEntity(
     id: Long? = null,
     email: Long? = null,

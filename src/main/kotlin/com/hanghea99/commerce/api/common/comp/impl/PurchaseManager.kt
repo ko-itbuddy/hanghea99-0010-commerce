@@ -11,11 +11,11 @@ class PurchaseManager(var purchaseRepository :PurchaseRepository) : ManagerCompo
         TODO("Not yet implemented")
     }
 
-    override fun delete(entityIds: List<Long>) {
+    fun delete(entityIds: List<PurchaseEntity>) {
         TODO("Not yet implemented")
     }
 
     override fun create(entities: List<PurchaseEntity>): List<PurchaseEntity> {
-        TODO("Not yet implemented")
+        return purchaseRepository.saveAllAndFlush(entities)
     }
 }

@@ -77,7 +77,7 @@ class PurchaseService(
     @Throws(Exception::class)
     fun postPurchaseDelete(@RequestBody postPurchaseDeleteRequest: PostPurchaseDeleteRequest): PostNullResultResponse {
 
-        purchaseManager.delete(
+        purchaseManager.update(
             postPurchaseDeleteRequest.deleteKeys.map{deleteKey ->
                 PurchaseEntity(
                     purchaseKey = deleteKey,

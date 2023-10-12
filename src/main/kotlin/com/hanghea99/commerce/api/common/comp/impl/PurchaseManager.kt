@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component
 @Component
 class PurchaseManager(var purchaseRepository :PurchaseRepository) : ManagerComponent<PurchaseEntity, Long>() {
     override fun update(entities: List<PurchaseEntity>): Long {
-        TODO("Not yet implemented")
+        return purchaseRepository.saveAllAndFlush(entities).count().toLong()
     }
 
-    fun delete(entityIds: List<PurchaseEntity>) {
+    override fun delete(entityIds: List<Long>) {
         TODO("Not yet implemented")
     }
 

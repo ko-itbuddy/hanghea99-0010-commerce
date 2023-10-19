@@ -91,13 +91,13 @@ jobs:
     - uses: actions/cache@v3
       with:
         path: |
-          ~/api/.gradle/caches
-          ~/api/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('~/api/**/*.gradle*', '~/api/**/gradle-wrapper.properties') }}
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('~/**/*.gradle*', '~/**/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
 
-    - run: docker build --tag my-image api/.
+    - run: docker build --tag my-image .
     - name: Push to ECR
       id: ecr
       uses: jwalton/gh-ecr-push@v1

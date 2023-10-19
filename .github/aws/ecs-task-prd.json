@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:289360095042:task-definition/hanghea99-plus-0010-prd:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:289360095042:task-definition/hanghea99-plus-0010-prd:20",
     "containerDefinitions": [
         {
             "name": "api",
-            "image": "289360095042.dkr.ecr.ap-northeast-2.amazonaws.com/hanghea99-plus-0010-prd",
+            "image": "289360095042.dkr.ecr.ap-northeast-2.amazonaws.com/hanghea99-plus-0010-prd:20231019133230",
             "cpu": 0,
             "portMappings": [
                 {
@@ -15,7 +15,12 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "SPRING_PROFILES_ACTIVE",
+                    "value": "prod"
+                }
+            ],
             "environmentFiles": [
                 {
                     "value": "arn:aws:s3:::hanghea99-plus-envs/envfile_PRD.env",
@@ -24,7 +29,6 @@
             ],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -41,7 +45,7 @@
     "taskRoleArn": "arn:aws:iam::289360095042:role/AmazonECSTaskExecutioner",
     "executionRoleArn": "arn:aws:iam::289360095042:role/AmazonECSTaskExecutioner",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 20,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -90,7 +94,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-09-14T15:48:08.117Z",
-    "registeredBy": "arn:aws:iam::289360095042:user/hanghea99-plus-0010",
+    "registeredAt": "2023-10-19T15:31:46.791Z",
+    "registeredBy": "arn:aws:iam::289360095042:root",
     "tags": []
 }

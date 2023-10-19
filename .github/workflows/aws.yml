@@ -53,7 +53,7 @@ jobs:
         echo "Running on branch ${{ github.ref_name }}"
         if [ "${{ github.ref_name }}" = "main" ]; then
           echo "ecrRepositoryName=hanghea99-plus-0010-prd" >> $GITHUB_OUTPUT
-          echo "ecsService=cicd-service-prd" >> $GITHUB_OUTPUT
+          echo "ecsService=cicd2" >> $GITHUB_OUTPUT
           echo "ecsTask=.github/aws/ecs-task-prd.json" >> $GITHUB_OUTPUT
         elif [ "${{ github.ref_name }}" = "cbt" ]; then
           echo "ecrRepositoryName=hanghea99-plus-0010-cbt" >> $GITHUB_OUTPUT

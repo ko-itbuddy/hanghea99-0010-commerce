@@ -20,5 +20,5 @@ EXPOSE 8080
 
 # copy build file
 # cicd-0.0.1-SNAPSHOT -> 파라미터로 대체 가능 할 듯
-COPY --from=builder ./build/libs/cicd-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder ./build/libs/commerce-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]

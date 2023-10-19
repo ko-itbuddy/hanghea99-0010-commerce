@@ -1,8 +1,8 @@
 FROM amazoncorretto:17 AS builder
 
 COPY gradlew .
-COPY build.gradle .
-COPY settings.gradle .
+COPY build.gradle.kts .
+COPY settings.gradle.kts .
 COPY gradle gradle
 COPY src src
 

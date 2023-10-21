@@ -1,9 +1,8 @@
 package com.hanghea99.commerce.configuration.database
 
+import com.hanghea99.commerce.logger
 import jakarta.persistence.EntityManagerFactory
-import net.ttddyy.dsproxy.listener.logging.DefaultQueryLogEntryCreator
-import net.ttddyy.dsproxy.listener.logging.SLF4JQueryLoggingListener
-import net.ttddyy.dsproxy.listener.logging.SystemOutQueryLoggingListener
+import net.ttddyy.dsproxy.listener.logging.*
 import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder
 import org.hibernate.cfg.AvailableSettings
 import org.hibernate.engine.jdbc.internal.FormatStyle
@@ -36,6 +35,8 @@ import javax.sql.DataSource
 )
 class DataSourceConfig(var env: Environment) {
 
+    val log = logger()
+
     @Primary
     @Bean(name = ["masterDataSource"])
     @ConfigurationProperties(prefix = "spring.datasource.write")
@@ -55,14 +56,22 @@ class DataSourceConfig(var env: Environment) {
         @Qualifier("masterDataSource") masterDataSource: DataSource?,
         @Qualifier("slaveDataSource") slaveDataSource: DataSource?
     ): DataSource {
-        return ReplicationRoutingDataSource(masterDataSource!!, slaveDataSource!!)
-    }
-
-    private class PrettyQueryEntryCreator : DefaultQueryLogEntryCreator() {
-        private val formatter = FormatStyle.HIGHLIGHT.formatter
-        override fun formatQuery(query: String): String {
-            return formatter.format(query)
-        }
+        return ReplicationRoutingDataSource(
+            ProxyDataSourceBuilder
+                .create(masterDataSource)
+                .name("masterDataSource")
+                .countQuery()
+                .logQueryBySlf4j(SLF4JLogLevel.ERROR, this.javaClass.name)
+                .logSlowQueryToSysOut(1, TimeUnit.MINUTES)
+                .build(),
+            ProxyDataSourceBuilder
+                .create(slaveDataSource)
+                .name("slaveDataSource")
+                .countQuery()
+                .logQueryBySlf4j(SLF4JLogLevel.ERROR, this.javaClass.name)
+                .logSlowQueryToSysOut(1, TimeUnit.MINUTES)
+                .build()
+        )
     }
 
     @Profile("dev|default")
@@ -71,25 +80,19 @@ class DataSourceConfig(var env: Environment) {
         @Qualifier("masterDataSource") masterDataSource: DataSource?,
         @Qualifier("slaveDataSource") slaveDataSource: DataSource?
     ): DataSource {
-        val creator = PrettyQueryEntryCreator()
-        creator.isMultiline = true
-        val listener = SystemOutQueryLoggingListener()
-        listener.queryLogEntryCreator = creator
         return ReplicationRoutingDataSource(
             ProxyDataSourceBuilder
                 .create(masterDataSource)
                 .name("masterDataSource")
                 .countQuery()
-                .multiline()
-                .listener(listener)
+                .logQueryBySlf4j(SLF4JLogLevel.INFO, this.javaClass.name)
                 .logSlowQueryToSysOut(1, TimeUnit.MINUTES)
                 .build(),
             ProxyDataSourceBuilder
                 .create(slaveDataSource)
                 .name("slaveDataSource")
                 .countQuery()
-                .multiline()
-                .listener(listener)
+                .logQueryBySlf4j(SLF4JLogLevel.INFO, this.javaClass.name)
                 .logSlowQueryToSysOut(1, TimeUnit.MINUTES)
                 .build()
         )

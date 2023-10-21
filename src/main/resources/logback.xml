@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+<!--  <appender name="ASYNC_AWS_LOGS" class="ca.pjer.logback.AwsLogsAppender">-->
+<!--    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--      <level>ERROR</level>-->
+<!--    </filter>-->
+<!--    <layout>-->
+<!--      <pattern>%d{yyyyMMdd'T'HHmmss} %thread %level %logger{15} %msg%n</pattern>-->
+<!--    </layout>-->
+<!--    <if condition='property("spring.profiles.active").contains("local")'>-->
+<!--      <then>-->
+<!--        &lt;!&ndash; local 용 로그 그룹명 &ndash;&gt;-->
+<!--        <logGroupName>${Log_Group_Name:local}</logGroupName>-->
+<!--      </then>-->
+<!--    </if>-->
+<!--    <if condition='property("spring.profiles.active").contains("dev")'>-->
+<!--      <then>-->
+<!--        &lt;!&ndash; dev 용 로그 그룹명 &ndash;&gt;-->
+<!--        <logGroupName>${Log_Group_Name:dev}</logGroupName>-->
+<!--      </then>-->
+<!--    </if>-->
+<!--    <if condition='property("spring.profiles.active").contains("prod")'>-->
+<!--      <then>-->
+<!--        &lt;!&ndash; prod 용 로그 그룹명 &ndash;&gt;-->
+<!--        <logGroupName>${Log_Group_Name:prod}</logGroupName>-->
+<!--      </then>-->
+<!--    </if>-->
+<!--    <logStreamUuidPrefix>error-</logStreamUuidPrefix>-->
+<!--    <logRegion>ap-northeast-2</logRegion>-->
+<!--    <maxBatchLogEvents>50</maxBatchLogEvents>-->
+<!--    <maxFlushTimeMillis>30000</maxFlushTimeMillis>-->
+<!--    <maxBlockTimeMillis>5000</maxBlockTimeMillis>-->
+<!--    <retentionTimeDays>0</retentionTimeDays>-->
+<!--  </appender>-->
+
+<!--  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--      <level>ERROR</level>-->
+<!--    </filter>-->
+<!--    <layout>-->
+<!--      <pattern>%d{yyyyMMdd'T'HHmmss} %thread %level %logger{15} %msg%n</pattern>-->
+<!--    </layout>-->
+<!--    <if condition='property("spring.profiles.active").contains("local")'>-->
+<!--      <then>-->
+<!--        &lt;!&ndash; local 용 로그 그룹명 &ndash;&gt;-->
+<!--        <logGroupName>${Log_Group_Name:local}</logGroupName>-->
+<!--      </then>-->
+<!--    </if>-->
+<!--    <if condition='property("spring.profiles.active").contains("dev")'>-->
+<!--      <then>-->
+<!--        &lt;!&ndash; dev 용 로그 그룹명 &ndash;&gt;-->
+<!--        <logGroupName>${Log_Group_Name:dev}</logGroupName>-->
+<!--      </then>-->
+<!--    </if>-->
+<!--    <if condition='property("spring.profiles.active").contains("prod")'>-->
+<!--      <then>-->
+<!--        &lt;!&ndash; prod 용 로그 그룹명 &ndash;&gt;-->
+<!--        <logGroupName>${Log_Group_Name:prod}</logGroupName>-->
+<!--      </then>-->
+<!--    </if>-->
+<!--  </appender>-->
+
+<!--  <springProfile name="dev">-->
+<!--    <logger name="org.springframework" level="INFO" />-->
+<!--    <logger name="inc.bfactory.kpop" level="INFO"/>-->
+<!--    <root level="INFO">-->
+<!--      <appender-ref ref="ASYNC_AWS_LOGS" />-->
+<!--    </root>-->
+<!--  </springProfile>-->
+
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%d{yyyyMMdd'T'HHmmss} %thread %level %logger{15} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+<!--  <logger name="org.springframework" level="INFO" >-->
+<!--    <appender-ref ref="console" />-->
+<!--  </logger>-->
+
+  <root level="INFO">
+    <appender-ref ref="console" level="INFO"/>
+  </root>
+
+</configuration>

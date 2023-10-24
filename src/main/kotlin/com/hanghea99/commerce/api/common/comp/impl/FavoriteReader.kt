@@ -17,7 +17,7 @@ class FavoriteReader (
     private val log = LoggerFactory.getLogger("FavoriteReader")
 
     override fun read(id: Long): FavoriteEntity {
-        TODO("Not yet implemented")
+        return  TODO("Not yet implemented")
     }
 
     override fun read(where: BooleanBuilder): FavoriteEntity {
@@ -33,7 +33,8 @@ class FavoriteReader (
     }
 
     override fun readAll(ids: List<Long>): List<FavoriteEntity> {
-        TODO("Not yet implemented")
+        return favoriteRepository.findAll() as List<FavoriteEntity>
+
     }
 
     override fun readAll(

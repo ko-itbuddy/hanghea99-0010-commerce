@@ -30,7 +30,7 @@ open class FavoriteEntity(
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USER_ID", nullable = false, foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var userEntity: UserEntity? = userEntity
 
     @OneToMany(mappedBy = "favoriteEntity")

@@ -31,7 +31,7 @@ open class PaymentEntity(
 
     @MapsId("purchaseKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY")
+    @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var purchaseEntity: PurchaseEntity? = purchaseEntity
 
     @Size(max = 20)

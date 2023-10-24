@@ -38,7 +38,7 @@ open class PurchaseEntity(
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USER_ID", nullable = false, foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var userEntity: UserEntity? = userEntity
 
     @Column(name = "TOTAL_PRICE", precision = 20, scale = 2)

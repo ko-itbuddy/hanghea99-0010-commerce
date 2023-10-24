@@ -37,7 +37,7 @@ open class DeliveryAddressEntity(
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USER_ID", nullable = false, foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var userEntity: UserEntity? = userEntity
 
     @Size(max = 20)

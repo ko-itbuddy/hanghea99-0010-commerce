@@ -42,17 +42,17 @@ open class PurchaseItemEntity(
 
     @MapsId("reviewId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "REVIEW_ID", nullable = false)
+    @JoinColumn(name = "REVIEW_ID", nullable = false, foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var reviewEntity: ReviewEntity? = reviewEntity
 
     @MapsId("purchaseKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY")
+    @JoinColumn(name = "PURCHASE_KEY", nullable = false, referencedColumnName = "PURCHASE_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var purchaseEntity: PurchaseEntity? = purchaseEntity
 
     @MapsId("optionKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY")
+    @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var storeItemoptionEntity: StoreItemOptionEntity? = storeItemoptionEntity
 
     @OneToMany(mappedBy = "purchaseItemEntity")

@@ -35,11 +35,11 @@ open class CartItemEntity(
 
     @MapsId("cartKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CART_KEY", nullable = false, referencedColumnName = "CART_KEY")
+    @JoinColumn(name = "CART_KEY", nullable = false, referencedColumnName = "CART_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var cartEntity: CartEntity? = cartEntity
 
     @MapsId("optionKey")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY")
+    @JoinColumn(name = "OPTION_KEY", nullable = false, referencedColumnName = "OPTION_KEY", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     open var storeItemOptionEntity: StoreItemOptionEntity? = storeItemOptionEntity
 }

@@ -35,7 +35,8 @@ open class DeliveryEntity(
     @JoinColumn(
         name = "PURCHASE_ITEM_KEY",
         nullable = false,
-        referencedColumnName = "PURCHASE_ITEM_KEY"
+        referencedColumnName = "PURCHASE_ITEM_KEY",
+        foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT),
     )
     open var purchaseItemEntity: PurchaseItemEntity? = purchaseItemEntity
 

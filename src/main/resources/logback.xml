@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
+  <property name="Log_Group_Name:local" value="HANGHAE99-LOCAL"/>
+  <property name="Log_Group_Name:dev" value="HANGHAE99-DEV"/>
+  <property name="Log_Group_Name:prod" value="HANGHAE99-PROD"/>
+
     <appender name="ASYNC_AWS_LOGS" class="ca.pjer.logback.AwsLogsAppender">
       <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-        <level>INFO</level>
+        <level>ERROR</level>
       </filter>
       <layout>
         <pattern>%d{yyyyMMdd'T'HHmmss} %thread %level %logger{15} %msg%n</pattern>
@@ -25,7 +30,6 @@
           <logGroupName>${Log_Group_Name:prod}</logGroupName>
         </then>
       </if>
-      <logGroupName>HANGHAE-99</logGroupName>
       <logStreamUuidPrefix>error-</logStreamUuidPrefix>
       <logRegion>ap-northeast-2</logRegion>
       <maxBatchLogEvents>50</maxBatchLogEvents>
@@ -44,8 +48,17 @@
     </encoder>
   </appender>
 
+  <springProfile name="local">
+    <logger name="org.springframework" level="INFO" />
+    <logger name="inc.bfactory.kpop" level="INFO"/>
+    <root level="INFO">
+      <appender-ref ref="ASYNC_AWS_LOGS"/>
+      <appender-ref ref="console" level="INFO"/>
+    </root>
+  </springProfile>
 
-  <springProfile name="dev">
+
+  <springProfile name="dev|prod">
     <logger name="org.springframework" level="INFO" />
     <logger name="inc.bfactory.kpop" level="INFO"/>
     <root level="INFO">

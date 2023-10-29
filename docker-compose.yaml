@@ -23,11 +23,15 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://database:3306/commerce?useUnicode=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=1234
-      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
-      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_KEY}
+      - AWS_DEFAULT_REGION=ap-northeast-2
+      - AWS_DEFAULT_OUTPUT=json
     entrypoint: ["sh","-c"]
     command:
       - |
+        mkdir -p /usr/share/collectd/
+        touch /usr/share/collectd/types.db
         /opt/aws/amazon-cloudwatch-agent/bin/start-amazon-cloudwatch-agent
         java -jar /app.jar
 

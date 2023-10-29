@@ -13,9 +13,9 @@ RUN ./gradlew build -x test || return 0
 COPY . .
 #################################################################
 
-FROM amazonlinux
+FROM amazonlinux:2023
 
-RUN yum -y install java-17-amazon-corretto amazon-cloudwatch-agent /usr/bin/systemctl
+RUN yum -y install java-17-amazon-corretto amazon-cloudwatch-agent aws-cli
 COPY ./cloud-watch/config.json /opt/aws/amazon-cloudwatch-agent/bin/default_linux_config.json
 
 # docker port open

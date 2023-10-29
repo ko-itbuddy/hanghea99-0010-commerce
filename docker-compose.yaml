@@ -1,0 +1,31 @@
+version: "3.2"
+
+services:
+  database:
+    container_name: database
+    image: mariadb:11
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MARIADB_DATABASE=commerce
+      - MARIADB_ROOT_PASSWORD=1234
+      - MARIADB_ROOT_HOST=%
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+  api:
+    depends_on:
+      - database
+    build:
+      context: ./ # Dockerfile 위치
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://database:3306/commerce?useUnicode=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+
+    restart: always
+    ports:
+      - 8080:8080
